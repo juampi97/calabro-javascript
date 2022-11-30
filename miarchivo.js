@@ -1,7 +1,7 @@
 let tipoOperacion;
 
-let proyectores = 10;
-let notebooks = 10;
+let proyectores = 5;
+let notebooks = 5;
 
 let proyectoresReservados = 0;
 let notebooksReservadas = 0;
@@ -109,7 +109,7 @@ function reserva() {
           notebooksReservadas++;
           alert("Reserva de una notebook efectuada");
         } else {
-          alert("No hay proyectores en stock");
+          alert("No hay notebooks en stock");
         }
         break;
       case "P":
@@ -118,7 +118,7 @@ function reserva() {
           proyectoresReservados++;
           alert("Reserva de un proyector efectuada");
         } else {
-          alert("No hay notebooks en stock");
+          alert("No hay proyectores en stock");
         }
         break;
     }
@@ -139,6 +139,24 @@ function devolucion() {
         "\n" +
         "'ESC' para terminar la operacion"
     );
+    let devolucionValida = validarNPE(tipoDispositivo);
+    if (devolucionValida) {
+      switch (tipoDispositivo) {
+        case "N":
+          notebooks++;
+          notebooksReservadas--;
+          alert("Devolucion de notebook efectuada");
+          break;
+        case "P":
+          proyectores++;
+          proyectoresReservados--;
+          alert("Devolucion de proyector efectuada");
+          break;
+      }
+    } else {
+      alert("Error, devolucion no valida");
+      devolucion();
+    }
   } else if (proyectoresReservados > 0 && notebooksReservadas == 0) {
     tipoDispositivo = prompt(
       "Ingrese:" +
@@ -147,6 +165,17 @@ function devolucion() {
         "\n" +
         "'ESC' para terminar la operacion"
     );
+    let devolucionValida = validarPE(tipoDispositivo);
+    if (devolucionValida) {
+      if (tipoDispositivo == "P") {
+        proyectores++;
+        proyectoresReservados--;
+        alert("Devolucion de proyector efectuada");
+      }
+    } else {
+      alert("Error, devolucion no valida");
+      devolucion();
+    }
   } else if (proyectoresReservados == 0 && notebooksReservadas > 0) {
     tipoDispositivo = prompt(
       "Ingrese:" +
@@ -155,10 +184,51 @@ function devolucion() {
         "\n" +
         "'ESC' para terminar la operacion"
     );
+    let devolucionValida = validarNE(tipoDispositivo);
+    if (devolucionValida) {
+      if (tipoDispositivo == "N") {
+        notebooks++;
+        notebooksReservadas--;
+        alert("Devolucion de notebook efectuada");
+      }
+    } else {
+      alert("Error, devolucion no valida");
+      devolucion();
+    }
+  } else {
+    alert(
+      "No se efectuo ninguna reserva previa, no hay unidades para devolver"
+    );
   }
 }
 
 function validarNPE(dato) {
+  switch (dato) {
+    case "N":
+    case "P":
+    case "ESC":
+      return 1;
+      break;
+    default:
+      return 0;
+      break;
+  }
+}
+
+function validarNE(dato) {
+  switch (dato) {
+    case "N":
+    case "P":
+    case "ESC":
+      return 1;
+      break;
+    default:
+      return 0;
+      break;
+  }
+}
+
+function validarPE(dato) {
   switch (dato) {
     case "N":
     case "P":
