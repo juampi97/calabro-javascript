@@ -108,7 +108,7 @@ function reserva() {
           notebooks--;
           notebooksReservadas++;
           alert("Reserva de una notebook efectuada");
-        }else{
+        } else {
           alert("No hay proyectores en stock");
         }
         break;
@@ -117,7 +117,7 @@ function reserva() {
           proyectores--;
           proyectoresReservados++;
           alert("Reserva de un proyector efectuada");
-        }else{
+        } else {
           alert("No hay notebooks en stock");
         }
         break;
@@ -128,7 +128,35 @@ function reserva() {
   }
 }
 
-function devolucion() {}
+function devolucion() {
+  if (proyectoresReservados > 0 && notebooksReservadas > 0) {
+    tipoDispositivo = prompt(
+      "Ingrese:" +
+        "\n" +
+        "'P' para devolver un proyector" +
+        "\n" +
+        "'N' para devolver una notebook" +
+        "\n" +
+        "'ESC' para terminar la operacion"
+    );
+  } else if (proyectoresReservados > 0 && notebooksReservadas == 0) {
+    tipoDispositivo = prompt(
+      "Ingrese:" +
+        "\n" +
+        "'P' para devolver un proyector" +
+        "\n" +
+        "'ESC' para terminar la operacion"
+    );
+  } else if (proyectoresReservados == 0 && notebooksReservadas > 0) {
+    tipoDispositivo = prompt(
+      "Ingrese:" +
+        "\n" +
+        "'N' para devolver una notebook" +
+        "\n" +
+        "'ESC' para terminar la operacion"
+    );
+  }
+}
 
 function validarNPE(dato) {
   switch (dato) {
@@ -146,7 +174,7 @@ function validarNPE(dato) {
 //Codigo principal
 
 dataIn();
-while(tipoOperacion!='ESC'){
+while (tipoOperacion != "ESC") {
   dataIn();
 }
-alert('¡Adios!')
+alert("¡Adios!");
