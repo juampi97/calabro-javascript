@@ -3,11 +3,24 @@ let tipoOperacion;
 let proyectores = 10;
 let notebooks = 10;
 
+let proyectoresReservados = 0;
+let notebooksReservadas = 0;
+
 //Funciones
+
+function dataIn() {
+  tipoOperacion = operationIn();
+  let operacionValida = validarOperacion(tipoOperacion);
+  if (operacionValida) {
+    selectOperacion(tipoOperacion);
+  } else {
+    alert("Error, operacion no valida");
+  }
+}
 
 function operationIn() {
   tipoOperacion = prompt(
-    "Ingrese:" +
+    "¡Bienvenido! Ingrese:" +
       "\n" +
       "'0' para consultar stock de un producto" +
       "\n" +
@@ -57,28 +70,71 @@ function consulta() {
       "\n" +
       "'P' para consultar stock de proyectores" +
       "\n" +
-      "'N' para consultar stock de notebooks"
+      "'N' para consultar stock de notebooks" +
+      "\n" +
+      "'ESC' para terminar la operacion"
   );
-  let consultaValida = validarConsulta(tipoDispositivo);
-  if(consultaValida){
-    switch(tipoDispositivo){
-        case 'N':
-            alert("Hay " + notebooks + " unidades en stock");
+  let consultaValida = validarNPE(tipoDispositivo);
+  if (consultaValida) {
+    switch (tipoDispositivo) {
+      case "N":
+        alert("Hay " + notebooks + " unidades en stock");
         break;
-        case 'P':
-            alert("Hay " + proyectores + " unidades en stock");
+      case "P":
+        alert("Hay " + proyectores + " unidades en stock");
         break;
     }
-  }else{
+  } else {
     alert("Error, consulta no valida");
     consulta();
   }
 }
 
-function validarConsulta(dato) {
+function reserva() {
+  tipoDispositivo = prompt(
+    "Ingrese:" +
+      "\n" +
+      "'P' para la reserva de un proyector" +
+      "\n" +
+      "'N' para la reserva de una notebook" +
+      "\n" +
+      "'ESC' para terminar la operacion"
+  );
+  let reservaValida = validarNPE(tipoDispositivo);
+  if (reservaValida) {
+    switch (tipoDispositivo) {
+      case "N":
+        if (notebooks > 0) {
+          notebooks--;
+          notebooksReservadas++;
+          alert("Reserva de una notebook efectuada");
+        }else{
+          alert("No hay proyectores en stock");
+        }
+        break;
+      case "P":
+        if (proyectores > 0) {
+          proyectores--;
+          proyectoresReservados++;
+          alert("Reserva de un proyector efectuada");
+        }else{
+          alert("No hay notebooks en stock");
+        }
+        break;
+    }
+  } else {
+    alert("Error, consulta no valida");
+    consulta();
+  }
+}
+
+function devolucion() {}
+
+function validarNPE(dato) {
   switch (dato) {
     case "N":
     case "P":
+    case "ESC":
       return 1;
       break;
     default:
@@ -87,17 +143,10 @@ function validarConsulta(dato) {
   }
 }
 
-function reserva() {}
-
-function devolucion() {}
-
 //Codigo principal
 
-tipoOperacion = operationIn();
-let operacionValida = validarOperacion(tipoOperacion);
-if(operacionValida){
-    selectOperacion(tipoOperacion);
+dataIn();
+while(tipoOperacion!='ESC'){
+  dataIn();
 }
-else{
-    alert("Error, operacion no valida");
-}
+alert('¡Adios!')
