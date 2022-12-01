@@ -218,7 +218,6 @@ function validarNPE(dato) {
 function validarNE(dato) {
   switch (dato) {
     case "N":
-    case "P":
     case "ESC":
       return 1;
       break;
@@ -230,7 +229,6 @@ function validarNE(dato) {
 
 function validarPE(dato) {
   switch (dato) {
-    case "N":
     case "P":
     case "ESC":
       return 1;
