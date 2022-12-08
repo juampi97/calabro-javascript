@@ -1,3 +1,6 @@
+const proyectores = [];
+const notebooks = [];
+
 class Proyector {
   constructor(cod_rec, marca, modelo, sn, vga, hdmi) {
     this.cod_rec = cod_rec.toUpperCase();
@@ -8,13 +11,13 @@ class Proyector {
     this.hdmi = hdmi;
     this.stock = true;
   }
-    reservar(){
-      this.stock = false;
-    }
+  reservar() {
+    this.stock = false;
+  }
 
-    devolver(){
-      this.stock = true;
-    }
+  devolver() {
+    this.stock = true;
+  }
 }
 class Notebook {
   constructor(cod_rec, marca, modelo, sn, vga, hdmi) {
@@ -33,10 +36,8 @@ function validarNPE(dato) {
     case "P":
     case "ESC":
       return 1;
-      break;
     default:
       return 0;
-      break;
   }
 }
 
@@ -75,7 +76,8 @@ function registrar() {
             "'1' si la notebook no tiene entrada HDMI"
         );
 
-        const notebook1 = new Notebook(cod_rec, marca, modelo, sn, vga, hdmi);
+        const newNotebook = new Notebook(cod_rec, marca, modelo, sn, vga, hdmi);
+        notebooks.push(newNotebook);
         break;
       case "P":
         cod_rec = prompt(
@@ -99,26 +101,38 @@ function registrar() {
             "'1' si el proyector no tiene entrada HDMI"
         );
 
-        proyector1 = new Proyector(cod_rec, marca, modelo, sn, vga, hdmi);
+        const newProyector = new Proyector(
+          cod_rec,
+          marca,
+          modelo,
+          sn,
+          vga,
+          hdmi
+        );
+        proyectores.push(newProyector);
         break;
-      }
-    } else {
-      alert("Error, consulta no valida");
-      registrar();
+      case "ESC":
+        return tipoDispositivo;
     }
+  } else {
+    alert("Error, consulta no valida");
   }
-  
-  // Programa principal
-  
-//  registrar();
+}
 
-const proyector1 = new Proyector("view1", "viewsonic", "i", "sn00", 0, 0);
-const proyector2 = new Proyector("view2", "viewsonic", "j", "sn01", 0, 0);
-const proyector3 = new Proyector("benq1", "benq", "k", "sn02", 0, 0);
-const proyector4 = new Proyector("benq2", "benq", "ñ", "sn03", 0, 0);
+// Programa principal
 
-console.log(proyector1.stock);
-proyector1.reservar();
-console.log(proyector1.stock);
-proyector1.devolver();
-console.log(proyector1.stock);
+dataIn = registrar();
+while (dataIn != "ESC") {
+  dataIn = registrar();
+}
+notebooks.pop();
+if(notebooks.length > 0){
+  console.log(notebooks);
+}
+if(proyectores.length > 0){
+  console.log(proyectores);
+}
+for (const producto of proyectores) {
+  console.log(producto.cod_rec);
+  console.log(producto.marca);
+}
