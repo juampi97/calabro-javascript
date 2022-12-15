@@ -1,17 +1,17 @@
 let operation;
 
-const proyectores = [
-  new Proyector('VIEW1','VIEWSONIC','MOD1','SN001',1,0),
-  new Proyector('VIEW2','VIEWSONIC','MOD1','SN002',0,1),
-  new Proyector('BENQ1','BENQ','MOD2','SN003',1,0),
-  new Proyector('BENQ2','BENQ','MOD3','SN004',1,1),
-];
-const notebooks = [
-  new Proyector('CR1','CR','MOD1','SN005',1,0),
-  new Proyector('CR2','CR','MOD1','SN006',0,1),
-  new Proyector('LENOVO1','LENOVO','MOD7','SN003',1,0),
-  new Proyector('LENOVO2','LENOVO','MOD8','SN004',1,1),
-];
+// const proyectores = [
+//   new Proyector('VIEW1','VIEWSONIC','MOD1','SN001',1,0),
+//   new Proyector('VIEW2','VIEWSONIC','MOD1','SN002',0,1),
+//   new Proyector('BENQ1','BENQ','MOD2','SN003',1,0),
+//   new Proyector('BENQ2','BENQ','MOD3','SN004',1,1),
+// ];
+// const notebooks = [
+//   new Proyector('CR1','CR','MOD1','SN005',1,0),
+//   new Proyector('CR2','CR','MOD1','SN006',0,1),
+//   new Proyector('LENOVO1','LENOVO','MOD7','SN003',1,0),
+//   new Proyector('LENOVO2','LENOVO','MOD8','SN004',1,1),
+// ];
 
 let proyectoresReserved = 0;
 let notebooksReserved = 0;
