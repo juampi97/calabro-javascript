@@ -14,6 +14,20 @@ class Proyector {
     this.vga = parseInt(vga);
     this.hdmi = parseInt(hdmi);
   }
+  salidaHDMI() {
+    if (this.hdmi) {
+      return "Disponible";
+    } else {
+      return "No disponible";
+    }
+  }
+  salidaVGA() {
+    if (this.vga) {
+      return "Disponible";
+    } else {
+      return "No disponible";
+    }
+  }
 }
 class Notebook {
   constructor(cod_rec, marca, modelo, sn, vga, hdmi) {
@@ -24,21 +38,35 @@ class Notebook {
     this.vga = parseInt(vga);
     this.hdmi = parseInt(hdmi);
   }
+  salidaHDMI() {
+    if (this.hdmi) {
+      return "Disponible";
+    } else {
+      return "No disponible";
+    }
+  }
+  salidaVGA() {
+    if (this.vga) {
+      return "Disponible";
+    } else {
+      return "No disponible";
+    }
+  }
 }
 
 //Simulo BD
 
 const proyectores = [
-  new Proyector('VIEW1','VIEWSONIC','MOD1','SN001',1,0),
-  new Proyector('VIEW2','VIEWSONIC','MOD1','SN002',0,1),
-  new Proyector('BENQ1','BENQ','MOD2','SN003',1,0),
-  new Proyector('BENQ2','BENQ','MOD3','SN004',1,1),
+  new Proyector("VIEW1", "VIEWSONIC", "MOD1", "SN001", 1, 0),
+  new Proyector("VIEW2", "VIEWSONIC", "MOD1", "SN002", 0, 1),
+  new Proyector("BENQ1", "BENQ", "MOD2", "SN003", 1, 0),
+  new Proyector("BENQ2", "BENQ", "MOD3", "SN004", 1, 1),
 ];
 const notebooks = [
-  new Proyector('CR1','CR','MOD1','SN005',1,0),
-  new Proyector('CR2','CR','MOD1','SN006',0,1),
-  new Proyector('LENOVO1','LENOVO','MOD7','SN003',1,0),
-  new Proyector('LENOVO2','LENOVO','MOD8','SN004',1,1),
+  new Notebook("CR2", "CR", "MOD1", "SN006", 0, 1),
+  new Notebook("CR1", "CR", "MOD1", "SN005", 1, 0),
+  new Notebook("LENOVO1", "LENOVO", "MOD7", "SN003", 1, 0),
+  new Notebook("LENOVO2", "LENOVO", "MOD8", "SN004", 1, 1),
 ];
 
 //Funciones
@@ -143,9 +171,11 @@ function consulta() {
   switch (tipoDispositivo.toUpperCase()) {
     case "N":
       alert(`Hay ${notebooks.length} notebooks en stock`);
+      crearStringConsulta(notebooks);
       break;
     case "P":
       alert(`Hay ${proyectores.length} proyectoreses en stock`);
+      crearStringConsulta(proyectores);
       break;
     case "ESC":
       break;
@@ -164,7 +194,7 @@ function reserva() {
   switch (tipoDispositivo.toUpperCase()) {
     case "N":
       if (notebooks.length > 0) {
-        notebooksReserved.push(notebooks[(notebooks.length)-1]);
+        notebooksReserved.push(notebooks[notebooks.length - 1]);
         notebooks.pop();
         alert("Reserva de una notebook efectuada");
       } else {
@@ -173,7 +203,7 @@ function reserva() {
       break;
     case "P":
       if (proyectores.length > 0) {
-        proyectoresReserved.push(proyectores[(proyectores.length)-1]);
+        proyectoresReserved.push(proyectores[proyectores.length - 1]);
         proyectores.pop();
         alert("Reserva de un proyector efectuada");
       } else {
@@ -203,12 +233,12 @@ function devolucion() {
     );
     switch (tipoDispositivo.toUpperCase()) {
       case "N":
-        notebooks.push(notebooksReserved[(notebooksReserved.length)-1]);
+        notebooks.push(notebooksReserved[notebooksReserved.length - 1]);
         notebooksReserved.pop();
         alert("Devolucion de notebook efectuada");
         break;
       case "P":
-        proyectores.push(proyectoresReserved[(proyectoresReserved.length)-1]);
+        proyectores.push(proyectoresReserved[proyectoresReserved.length - 1]);
         proyectoresReserved.pop();
         alert("Devolucion de proyector efectuada");
         break;
@@ -225,7 +255,7 @@ function devolucion() {
     );
     switch (tipoDispositivo.toUpperCase()) {
       case "P":
-        proyectores.push(proyectoresReserved[(proyectoresReserved.length)-1]);
+        proyectores.push(proyectoresReserved[proyectoresReserved.length - 1]);
         proyectoresReserved.pop();
         alert("Devolucion de proyector efectuada");
       case "ESC":
@@ -244,7 +274,7 @@ function devolucion() {
     );
     switch (tipoDispositivo.toUpperCase()) {
       case "N":
-        notebooks.push(notebooksReserved[(notebooksReserved.length)-1]);
+        notebooks.push(notebooksReserved[notebooksReserved.length - 1]);
         notebooksReserved.pop();
         alert("Devolucion de notebook efectuada");
       case "ESC":
@@ -261,6 +291,30 @@ function devolucion() {
   }
 }
 
+function crearStringConsulta(array) {
+  let infoConsulta = '';
+  let arrayOrdenado = array.slice(0);
+
+  arrayOrdenado = ordenarArray(arrayOrdenado);
+
+  arrayOrdenado.forEach((elemento) => {
+    infoConsulta += `
+    Codigo de recurso: ${elemento.cod_rec}
+    Marca: ${elemento.marca}
+    Modelo: ${elemento.modelo}
+    VGA: ${elemento.salidaVGA()}
+    HDMI: ${elemento.salidaHDMI()}
+    `;
+  });
+  return infoConsulta;
+}
+
+function ordenarArray(array) {
+  let arrayOrdenado = array.sort((a, b) => a.cod_rec.localeCompare(b.cod_rec));
+  return arrayOrdenado;
+}
+
 //Programa
+console.log(crearStringConsulta(notebooks))
 while (operationIn() != "ESC") {}
 alert("Adios!");
