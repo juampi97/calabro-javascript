@@ -1,0 +1,15 @@
+@import "./complements/variables";
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+@import "./componentes/generales.scss";
+@import "./componentes/footer";
+@import "./componentes/nav";
+@import "./pages/index";
+@import "./pages/proyectores";
+@import "./pages/contacto";
+

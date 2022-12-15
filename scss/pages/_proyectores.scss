@@ -1,0 +1,19 @@
+.main_reservas {
+  width: 90%;
+  min-height: 100vh;
+  margin-top: 82px;
+  @media (min-width: 992px) {
+    .main_reservas {
+      margin-top: 82px;
+    }
+  }
+}
+
+.reservas_container_card {
+  width: 100%;
+  @media (min-width: 992px) {
+    .reservas_container_card {
+      width: 70%;
+    }
+  }
+}
