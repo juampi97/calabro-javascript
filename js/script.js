@@ -117,17 +117,37 @@ function registrar() {
       vga = prompt(
         " Ingrese:" +
           "\n" +
-          "'0' si la notebook no tiene entrada VGA" +
+          "'0' si la notebook tiene entrada VGA" +
           "\n" +
-          "'1' si la notebook no tiene entrada VGA"
+          "'1' si la notebook tiene entrada VGA"
       );
+      while (vga != "0" && vga != "1") {
+        alert("Error dato ingreso invalido");
+        vga = prompt(
+          " Ingrese:" +
+            "\n" +
+            "'0' si la notebook tiene entrada VGA" +
+            "\n" +
+            "'1' si la notebook tiene entrada VGA"
+        );
+      }
       hdmi = prompt(
         " Ingrese:" +
           "\n" +
-          "'0' si la notebook no tiene entrada HDMI" +
+          "'0' si la notebook tiene entrada HDMI" +
           "\n" +
-          "'1' si la notebook no tiene entrada HDMI"
+          "'1' si la notebook tiene entrada HDMI"
       );
+      while (hdmi != "0" && hdmi != "1") {
+        alert("Error dato ingreso invalido");
+        hdmi = prompt(
+          " Ingrese:" +
+            "\n" +
+            "'0' si la notebook tiene entrada HDMI" +
+            "\n" +
+            "'1' si la notebook tiene entrada HDMI"
+        );
+      }
 
       const newNotebook = new Notebook(cod_rec, marca, modelo, sn, vga, hdmi);
       notebooks.push(newNotebook);
@@ -140,17 +160,37 @@ function registrar() {
       vga = prompt(
         " Ingrese:" +
           "\n" +
-          "'0' si el proyector no tiene entrada VGA" +
+          "'0' si el proyector tiene entrada VGA" +
           "\n" +
-          "'1' si el proyector no tiene entrada VGA"
+          "'1' si el proyector tiene entrada VGA"
       );
+      while (vga != "0" && vga != "1") {
+        alert("Error dato ingreso invalido");
+        vga = prompt(
+          " Ingrese:" +
+            "\n" +
+            "'0' si el proyector tiene entrada VGA" +
+            "\n" +
+            "'1' si el proyector tiene entrada VGA"
+        );
+      }
       hdmi = prompt(
         " Ingrese:" +
           "\n" +
-          "'0' si el proyector no tiene entrada HDMI" +
+          "'0' si el proyector tiene entrada HDMI" +
           "\n" +
-          "'1' si el proyector no tiene entrada HDMI"
+          "'1' si el proyector tiene entrada HDMI"
       );
+      while (hdmi != "0" && hdmi != "1") {
+        alert("Error dato ingreso invalido");
+        hdmi = prompt(
+          " Ingrese:" +
+            "\n" +
+            "'0' si el proyector tiene entrada HDMI" +
+            "\n" +
+            "'1' si el proyector tiene entrada HDMI"
+        );
+      }
 
       const newProyector = new Proyector(cod_rec, marca, modelo, sn, vga, hdmi);
       proyectores.push(newProyector);
@@ -170,12 +210,20 @@ function consulta() {
   );
   switch (tipoDispositivo.toUpperCase()) {
     case "N":
-      alert(`Hay ${notebooks.length} notebooks en stock`);
-      crearStringConsulta(notebooks);
+      alert(
+        "Notebooks en stock:\n" +
+          crearStringConsulta(notebooks) +
+          "\nNotebooks reservadas:\n" +
+          crearStringConsulta(notebooksReserved)
+      );
       break;
     case "P":
-      alert(`Hay ${proyectores.length} proyectoreses en stock`);
-      crearStringConsulta(proyectores);
+      alert(
+        "Proyectores en stock\n" +
+          crearStringConsulta(proyectores) +
+          "\nProyectores reservados:\n" +
+          crearStringConsulta(proyectoresReserved)
+      );
       break;
     case "ESC":
       break;
@@ -292,7 +340,7 @@ function devolucion() {
 }
 
 function crearStringConsulta(array) {
-  let infoConsulta = '';
+  let infoConsulta = "";
   let arrayOrdenado = array.slice(0);
 
   arrayOrdenado = ordenarArray(arrayOrdenado);
@@ -315,6 +363,6 @@ function ordenarArray(array) {
 }
 
 //Programa
-console.log(crearStringConsulta(notebooks))
+
 while (operationIn() != "ESC") {}
 alert("Adios!");
