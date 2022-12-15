@@ -1,20 +1,7 @@
 let operation;
 
-// const proyectores = [
-//   new Proyector('VIEW1','VIEWSONIC','MOD1','SN001',1,0),
-//   new Proyector('VIEW2','VIEWSONIC','MOD1','SN002',0,1),
-//   new Proyector('BENQ1','BENQ','MOD2','SN003',1,0),
-//   new Proyector('BENQ2','BENQ','MOD3','SN004',1,1),
-// ];
-// const notebooks = [
-//   new Proyector('CR1','CR','MOD1','SN005',1,0),
-//   new Proyector('CR2','CR','MOD1','SN006',0,1),
-//   new Proyector('LENOVO1','LENOVO','MOD7','SN003',1,0),
-//   new Proyector('LENOVO2','LENOVO','MOD8','SN004',1,1),
-// ];
-
-let proyectoresReserved = 0;
-let notebooksReserved = 0;
+let proyectoresReserved = [];
+let notebooksReserved = [];
 
 // Clases
 
@@ -39,14 +26,30 @@ class Notebook {
   }
 }
 
+//Simulo BD
+
+const proyectores = [
+  new Proyector('VIEW1','VIEWSONIC','MOD1','SN001',1,0),
+  new Proyector('VIEW2','VIEWSONIC','MOD1','SN002',0,1),
+  new Proyector('BENQ1','BENQ','MOD2','SN003',1,0),
+  new Proyector('BENQ2','BENQ','MOD3','SN004',1,1),
+];
+const notebooks = [
+  new Proyector('CR1','CR','MOD1','SN005',1,0),
+  new Proyector('CR2','CR','MOD1','SN006',0,1),
+  new Proyector('LENOVO1','LENOVO','MOD7','SN003',1,0),
+  new Proyector('LENOVO2','LENOVO','MOD8','SN004',1,1),
+];
+
 //Funciones
 
 function operationIn() {
   let tipoOperacion = prompt(
     "¡Bienvenido! Ingrese:\n0 - para registrar un producto\n1 - para consultar stock de un producto\n2 - para reservar un producto\n3 - para devolver un producto (valido unicamente si se realizo un reserva previamente)\nESC -  para terminar la operacion"
   );
-  selectOperacion(tipoOperacion.toUpperCase());
-  return tipoOperacion.toUpperCase();
+  tipoOperacion = tipoOperacion.toUpperCase();
+  selectOperacion(tipoOperacion);
+  return tipoOperacion;
 }
 
 function selectOperacion(dato) {
@@ -77,7 +80,6 @@ function registrar() {
   tipoDispositivo = prompt(
     "Ingrese:\nP - para registrar un proyector\nN - para registrar una notebook\nESC - para terminar la operacion"
   );
-
   switch (tipoDispositivo.toUpperCase()) {
     case "N":
       cod_rec = prompt(" Ingrese CODIGO DE RECURSO de la notebook a registrar");
@@ -140,10 +142,10 @@ function consulta() {
   );
   switch (tipoDispositivo.toUpperCase()) {
     case "N":
-      alert("Hay " + notebooks + " unidades en stock");
+      alert(`Hay ${notebooks.length} notebooks en stock`);
       break;
     case "P":
-      alert("Hay " + proyectores + " unidades en stock");
+      alert(`Hay ${proyectores.length} proyectoreses en stock`);
       break;
     case "ESC":
       break;
@@ -161,20 +163,18 @@ function reserva() {
   );
   switch (tipoDispositivo.toUpperCase()) {
     case "N":
-      if (notebooks > 0) {
-        notebooks--;
-        notebooksReserved++;
-        console.log(notebooksReserved);
+      if (notebooks.length > 0) {
+        notebooksReserved.push(notebooks[(notebooks.length)-1]);
+        notebooks.pop();
         alert("Reserva de una notebook efectuada");
       } else {
         alert("No hay notebooks en stock");
       }
       break;
     case "P":
-      if (proyectores > 0) {
-        proyectores--;
-        proyectoresReserved++;
-        console.log(proyectoresReserved);
+      if (proyectores.length > 0) {
+        proyectoresReserved.push(proyectores[(proyectores.length)-1]);
+        proyectores.pop();
         alert("Reserva de un proyector efectuada");
       } else {
         alert("No hay proyectores en stock");
@@ -191,7 +191,7 @@ function reserva() {
 
 function devolucion() {
   let tipoDispositivo;
-  if (proyectoresReserved > 0 && notebooksReserved > 0) {
+  if (proyectoresReserved.length > 0 && notebooksReserved.length > 0) {
     tipoDispositivo = prompt(
       "Ingrese:" +
         "\n" +
@@ -203,19 +203,19 @@ function devolucion() {
     );
     switch (tipoDispositivo.toUpperCase()) {
       case "N":
-        notebooks++;
-        notebooksReserved--;
+        notebooks.push(notebooksReserved[(notebooksReserved.length)-1]);
+        notebooksReserved.pop();
         alert("Devolucion de notebook efectuada");
         break;
       case "P":
-        proyectores++;
-        proyectoresReserved--;
+        proyectores.push(proyectoresReserved[(proyectoresReserved.length)-1]);
+        proyectoresReserved.pop();
         alert("Devolucion de proyector efectuada");
         break;
       case "ESC":
         break;
     }
-  } else if (proyectoresReserved > 0 && notebooksReserved == 0) {
+  } else if (proyectoresReserved.length > 0 && notebooksReserved.length == 0) {
     tipoDispositivo = prompt(
       "Ingrese:" +
         "\n" +
@@ -225,8 +225,8 @@ function devolucion() {
     );
     switch (tipoDispositivo.toUpperCase()) {
       case "P":
-        proyectores++;
-        proyectoresReserved--;
+        proyectores.push(proyectoresReserved[(proyectoresReserved.length)-1]);
+        proyectoresReserved.pop();
         alert("Devolucion de proyector efectuada");
       case "ESC":
         break;
@@ -234,7 +234,7 @@ function devolucion() {
         alert("Error, devolucion no valida");
         devolucion();
     }
-  } else if (proyectoresReserved == 0 && notebooksReserved > 0) {
+  } else if (proyectoresReserved.length == 0 && notebooksReserved.length > 0) {
     tipoDispositivo = prompt(
       "Ingrese:" +
         "\n" +
@@ -244,8 +244,8 @@ function devolucion() {
     );
     switch (tipoDispositivo.toUpperCase()) {
       case "N":
-        notebooks++;
-        notebooksReserved--;
+        notebooks.push(notebooksReserved[(notebooksReserved.length)-1]);
+        notebooksReserved.pop();
         alert("Devolucion de notebook efectuada");
       case "ESC":
         break;
