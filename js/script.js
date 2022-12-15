@@ -262,6 +262,5 @@ function devolucion() {
 }
 
 //Programa
-
 while (operationIn() != "ESC") {}
 alert("Adios!");
