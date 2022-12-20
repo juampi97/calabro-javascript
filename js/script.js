@@ -73,7 +73,7 @@ const notebooks = [
 
 function operationIn() {
   let tipoOperacion = prompt(
-    "¡Bienvenido! Ingrese:\n0 - para registrar un producto\n1 - para consultar stock de un producto\n2 - para reservar un producto\n3 - para devolver un producto (valido unicamente si se realizo un reserva previamente)\nESC -  para terminar la operacion"
+    "¡Bienvenido! Ingrese:\n0 - para registrar un producto\n1 - para consultar disponibilidad de productos\n2 - busqueda con filtro especifico\n3 - para reservar un producto\n4 - para devolver un producto (valido unicamente si se realizo un reserva previamente)\nESC -  para terminar la operacion"
   );
   tipoOperacion = tipoOperacion.toUpperCase();
   selectOperacion(tipoOperacion);
@@ -89,9 +89,12 @@ function selectOperacion(dato) {
       consulta();
       break;
     case "2":
+      busquedaFiltrado();
+      break;  
+    case "3":
       reserva();
       break;
-    case "3":
+    case "4":
       devolucion();
       break;
     case "ESC":
@@ -231,6 +234,74 @@ function consulta() {
       alert("Operacion no valida");
       consulta();
       break;
+  }
+}
+
+function busquedaFiltrado(){
+  let tipoDispositivo;
+  tipoDispositivo = prompt(
+    "Ingrese:\nP - para consultas sobre proyectores\nN - para consultas sobre notebooks\nESC - para terminar la operacion"
+  );
+  switch (tipoDispositivo.toUpperCase()) {
+    case "N":
+      consultaPuerto("N");
+      break;
+    case "P":
+      consultaPuerto("P");
+      break;
+    case "ESC":
+      break;
+    default:
+      alert("Operacion no valida");
+      consulta();
+      break;
+  }
+}
+function consultaPuerto(dato){
+  let tipoPuerto;
+  let arrayResultado
+  tipoPuerto = prompt(
+    "Ingrese:\nHDMI - para ver elementos con salida HDMI disponible\nVGA - para ver elementos con salida VGA disponible\nESC - para terminar la operacion"
+  );
+  switch (tipoPuerto.toUpperCase()) {
+    case "HDMI":
+      arrayResultado = filtradoHDMI(dato);
+      alert(crearStringConsulta(arrayResultado));
+      break;
+    case "VGA":
+      arrayResultado = filtradoVGA(dato);
+      alert(crearStringConsulta(arrayResultado));
+      break;
+    case "ESC":
+      break;
+    default:
+      alert("Operacion no valida");
+      consulta();
+      break;
+  }
+}
+
+function filtradoHDMI(dato){
+  let arrayResultado;
+  switch(dato){
+    case "N":
+      arrayResultado = notebooks.filter( (elemento) => elemento.hdmi == 1 );
+      return arrayResultado;
+    case "P":
+      arrayResultado = proyectores.filter( (elemento) => elemento.hdmi == 1 );
+      return arrayResultado;
+  }
+}
+
+function filtradoVGA(dato){
+  let arrayResultado;
+  switch(dato){
+    case "N":
+      arrayResultado = notebooks.filter( (elemento) => elemento.vga == 1 );
+      return arrayResultado;
+    case "P":
+      arrayResultado = proyectores.filter( (elemento) => elemento.vga == 1 );
+      return arrayResultado;
   }
 }
 
