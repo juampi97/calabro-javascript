@@ -6,7 +6,7 @@ let catalogo = document.getElementById("catalogo");
 
 for (const elemento of proyectores) {
   let card = document.createElement("div");
-  card.className = "col-sm-10 col-md-5 card m-2 py-2";
+  card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
   card.style = "width: 18rem";
   card.id = `${elemento.cod_rec}`;
 
@@ -30,7 +30,9 @@ for (const elemento of proyectores) {
   <div class="text-center pt-2">
     <div class="row d-flex">
       <div class="col boton_reserva">
-        <button type="button" class="btn btn-success" id="btnAdd">
+        <button type="button" class="btn btn-success btnAdd" id="btnAdd-${
+          elemento.cod_rec
+        }">
           Agregar
         </button>
       </div>
@@ -53,7 +55,9 @@ for (const elemento of proyectores) {
   <div class="text-center pt-2">
     <div class="row d-flex">
       <div class="col boton_reserva">
-        <button type="button" class="btn btn-success" id="btnAdd">
+        <button type="button" class="btn btn-success btnAdd" id="btnAdd-${
+          elemento.cod_rec
+        }">
           Agregar
         </button>
       </div>
@@ -64,4 +68,11 @@ for (const elemento of proyectores) {
   catalogo.append(card);
 }
 
-
+// Eventos
+let btnAdd = document.querySelectorAll(".btnAdd");
+btnAdd.forEach((boton) => {
+  boton.addEventListener("click", () => {
+    let elemento = boton.id.split("-");
+    console.log(elemento[1]);
+  });
+});
