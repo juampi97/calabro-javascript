@@ -65,3 +65,12 @@ const notebooks = [
 let adicionalHDMI = 5;
 let adicionalZapatilla = 10;
 
+// Genero arrays para forms
+
+let marcaProyectores = [];
+let codrecProyectores = [];
+
+proyectores.forEach((elemento) => {
+  marcaProyectores.push(elemento.marca)
+});
+console.log(marcaProyectores)

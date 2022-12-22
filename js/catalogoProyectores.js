@@ -68,7 +68,10 @@ for (const elemento of proyectores) {
   catalogo.append(card);
 }
 
-// Eventos
+// Generar opciones forms
+
+
+// Evento boton agregar carrito
 let btnAdd = document.querySelectorAll(".btnAdd");
 btnAdd.forEach((boton) => {
   boton.addEventListener("click", () => {
