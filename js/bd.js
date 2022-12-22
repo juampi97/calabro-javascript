@@ -1,10 +1,3 @@
-let operation;
-
-let proyectoresReserved = [];
-let notebooksReserved = [];
-
-// Clases
-
 class Proyector {
   constructor(cod_rec, marca, modelo, sn, vga, hdmi) {
     this.cod_rec = cod_rec.toUpperCase();
