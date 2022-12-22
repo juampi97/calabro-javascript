@@ -1,5 +1,8 @@
+// Traigo del DOM elemento catalogo
+
 let catalogo = document.getElementById("catalogo");
-console.log(catalogo);
+
+// Genero todas las cards proyectores
 
 for (const elemento of proyectores) {
   let card = document.createElement("div");
@@ -8,7 +11,7 @@ for (const elemento of proyectores) {
   card.id = `${elemento.cod_rec}`;
 
   if (elemento.hdmi) {
-    card.innerHTML += `<h5 class="card-title text-center" id="cardCodRec">
+    card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
     ${elemento.cod_rec}
   </h5>
   <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
@@ -20,21 +23,21 @@ for (const elemento of proyectores) {
          <input type="checkbox" class="form-check-input" id="adicional_hdmi" value="agregado">
          <label class="form-check-label" for="exampleCheck1">HDMI (opcional)</label>
        </div>
-       <div class="mb-3 form-check">
+       <div class="mb-2 form-check">
          <input type="checkbox" class="form-check-input" id="adicional_zapatilla" value="agregado">
          <label class="form-check-label" for="exampleCheck1">Zapatilla adicional (opcional)</label>
        </div>
   <div class="text-center pt-2">
     <div class="row d-flex">
       <div class="col boton_reserva">
-        <button type="button" class="btn btn-success">
+        <button type="button" class="btn btn-success" id="btnAdd">
           Agregar
         </button>
       </div>
     </div>
   </div>`;
   } else {
-    card.innerHTML += `<h5 class="card-title text-center" id="cardCodRec">
+    card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
     ${elemento.cod_rec}
   </h5>
   <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
@@ -43,14 +46,14 @@ for (const elemento of proyectores) {
   <p class="card-text py-2" id="cardVGA">VGA: ${elemento.salidaVGA()}</p>
   <p class="py-2">El maletín incluye alimentación, cabla VGA y zapatilla multitoma.</p>
        
-       <div class="mb-3 form-check">
+       <div class="mb-5 form-check">
          <input type="checkbox" class="form-check-input" id="adicional_zapatilla" value="agregado">
          <label class="form-check-label" for="exampleCheck1">Zapatilla adicional (opcional)</label>
        </div>
   <div class="text-center pt-2">
     <div class="row d-flex">
       <div class="col boton_reserva">
-        <button type="button" class="btn btn-success">
+        <button type="button" class="btn btn-success" id="btnAdd">
           Agregar
         </button>
       </div>
@@ -60,3 +63,5 @@ for (const elemento of proyectores) {
 
   catalogo.append(card);
 }
+
+

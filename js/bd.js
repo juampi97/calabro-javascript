@@ -62,3 +62,6 @@ const notebooks = [
   new Notebook("LENOVO2", "LENOVO", "MOD8", "SN004", 1, 1),
 ];
 
+let adicionalHDMI = 5;
+let adicionalZapatilla = 10;
+
