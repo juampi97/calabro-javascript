@@ -1,5 +1,5 @@
 let catalogo = document.getElementById('catalago');
-console.log(catalogo.innerHTML);
+console.log(catalogo);
 
 // for (const elemento of proyectores) {
 //   let card = document.createElement("div");
