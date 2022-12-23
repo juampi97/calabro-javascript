@@ -65,12 +65,34 @@ const notebooks = [
 let adicionalHDMI = 5;
 let adicionalZapatilla = 10;
 
-// Genero arrays para forms
+// Genero arrays para forms Proyectores
 
 let marcaProyectores = [];
 let codrecProyectores = [];
 
 proyectores.forEach((elemento) => {
-  marcaProyectores.push(elemento.marca)
+  marcaProyectores.push(elemento.marca);
 });
-console.log(marcaProyectores)
+marcaProyectores = [... new Set(marcaProyectores)];
+console.log(marcaProyectores);
+
+proyectores.forEach((elemento) => {
+  codrecProyectores.push(elemento.cod_rec);
+});
+console.log(codrecProyectores);
+
+// Genero arrays para forms Notebooks
+
+let marcaNotebooks = [];
+let codrecNotebooks = [];
+
+notebooks.forEach((elemento) => {
+  marcaNotebooks.push(elemento.marca);
+});
+marcaNotebooks = [... new Set(marcaNotebooks)];
+console.log(marcaNotebooks);
+
+notebooks.forEach((elemento) => {
+  codrecNotebooks.push(elemento.cod_rec);
+});
+console.log(codrecNotebooks);
