@@ -70,6 +70,21 @@ for (const elemento of proyectores) {
 
 // Generar opciones forms
 
+let selectProyectorMarca = document.getElementById('formProyectoresMarca')
+marcaProyectores.forEach((elemento) => {
+  let optionMarca = document.createElement("option");
+  optionMarca.innerHTML += elemento;
+  selectProyectorMarca.append(optionMarca)
+}
+)
+
+let selectProyectorCodRec = document.getElementById('formProyectoresCodRec')
+codrecProyectores.forEach((elemento) => {
+  let optionCodRec = document.createElement("option");
+  optionCodRec.innerHTML += elemento;
+  selectProyectorCodRec.append(optionCodRec)
+}
+)
 
 // Evento boton agregar carrito
 let btnAdd = document.querySelectorAll(".btnAdd");

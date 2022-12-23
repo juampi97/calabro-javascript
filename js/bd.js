@@ -90,9 +90,7 @@ notebooks.forEach((elemento) => {
   marcaNotebooks.push(elemento.marca);
 });
 marcaNotebooks = [... new Set(marcaNotebooks)];
-console.log(marcaNotebooks);
 
 notebooks.forEach((elemento) => {
   codrecNotebooks.push(elemento.cod_rec);
 });
-console.log(codrecNotebooks);
