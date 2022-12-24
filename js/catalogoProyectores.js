@@ -5,19 +5,36 @@ let catalogo = document.getElementById("catalogo");
 // Generar opciones forms
 
 let selectProyectorMarca = document.getElementById("selectProyectoresMarca");
-marcaProyectores.forEach((elemento) => {
-  let optionMarca = document.createElement("option");
-  optionMarca.innerHTML += elemento;
-  optionMarca.value = elemento;
-  selectProyectorMarca.append(optionMarca);
-});
+
+function generateOptionsMarca() {
+  selectProyectorMarca.innerHTML = "<option selected>Marca</option>";
+  marcaProyectores.forEach((elemento) => {
+    let optionMarca = document.createElement("option");
+    optionMarca.innerHTML += elemento;
+    optionMarca.value = elemento;
+    selectProyectorMarca.append(optionMarca);
+  });
+}
 
 let selectProyectorCodRec = document.getElementById("selectProyectoresCodRec");
-codrecProyectores.forEach((elemento) => {
-  let optionCodRec = document.createElement("option");
-  optionCodRec.innerHTML += elemento;
-  selectProyectorCodRec.append(optionCodRec);
-});
+
+function generateOptionsCodRec() {
+  selectProyectorCodRec.innerHTML = "<option selected>Modelo</option>";
+  codrecProyectores.forEach((elemento) => {
+    let optionCodRec = document.createElement("option");
+    optionCodRec.innerHTML += elemento;
+    selectProyectorCodRec.append(optionCodRec);
+  });
+}
+
+function generateOptionsCodRecFiltrado(array) {
+  selectProyectorCodRec.innerHTML = "<option selected>Modelo</option>";
+  array.forEach((elemento) => {
+    let optionCodRec = document.createElement("option");
+    optionCodRec.innerHTML += elemento.cod_rec;
+    selectProyectorCodRec.append(optionCodRec);
+  });
+}
 
 // Eventos para filtrado
 
@@ -372,7 +389,7 @@ let btnAdd = document.querySelectorAll(".btnAdd");
 btnAdd.forEach((boton) => {
   boton.addEventListener("click", () => {
     let elemento = boton.id.split("-");
-    console.log(elemento[1]);
+    
   });
 });
 
@@ -380,10 +397,21 @@ btnAdd.forEach((boton) => {
 
 window.addEventListener("load", function () {
   generateCatalagoGenerico();
+  generateOptionsMarca();
+  generateOptionsCodRec();
 });
 
 selectProyectorMarca.onchange = () => {
   generateCatalogo();
+  if (filtroMarca == "Marca") {
+    generateOptionsCodRec();
+  } else {
+    let arrayAux = proyectores.filter(
+      (elemento) => elemento.marca == filtroMarca
+    );
+    console.log(arrayAux);
+    generateOptionsCodRecFiltrado(arrayAux);
+  }
 };
 
 selectProyectorCodRec.onchange = () => {
