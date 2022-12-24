@@ -6,16 +6,16 @@ generateCatalagoGenerico();
 
 // Funciones generar cards proyectores
 
-function generateCatalagoGenerico(){
-  catalogo.innerHTML=""
+function generateCatalagoGenerico() {
+  catalogo.innerHTML = "";
   for (const elemento of proyectores) {
-  let card = document.createElement("div");
-  card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
-  card.style = "width: 18rem";
-  card.id = `${elemento.cod_rec}`;
+    let card = document.createElement("div");
+    card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
+    card.style = "width: 18rem";
+    card.id = `${elemento.cod_rec}`;
 
-  if (elemento.hdmi) {
-    card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
+    if (elemento.hdmi) {
+      card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
     ${elemento.cod_rec}
   </h5>
   <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
@@ -42,8 +42,8 @@ function generateCatalagoGenerico(){
       </div>
     </div>
   </div>`;
-  } else {
-    card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
+    } else {
+      card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
     ${elemento.cod_rec}
   </h5>
   <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
@@ -67,40 +67,50 @@ function generateCatalagoGenerico(){
       </div>
     </div>
   </div>`;
-  }
+    }
 
-  catalogo.append(card);
-}
+    catalogo.append(card);
+  }
 }
 
 // Generar opciones forms
 
-let selectProyectorMarca = document.getElementById('selectProyectoresMarca')
+let selectProyectorMarca = document.getElementById("selectProyectoresMarca");
 marcaProyectores.forEach((elemento) => {
   let optionMarca = document.createElement("option");
   optionMarca.innerHTML += elemento;
-  optionMarca.value = elemento
-  selectProyectorMarca.append(optionMarca)
-}
-)
+  optionMarca.value = elemento;
+  selectProyectorMarca.append(optionMarca);
+});
 
-let selectProyectorCodRec = document.getElementById('selectProyectoresCodRec')
+let selectProyectorCodRec = document.getElementById("selectProyectoresCodRec");
 codrecProyectores.forEach((elemento) => {
   let optionCodRec = document.createElement("option");
   optionCodRec.innerHTML += elemento;
-  selectProyectorCodRec.append(optionCodRec)
-}
-)
+  selectProyectorCodRec.append(optionCodRec);
+});
 
-// Evento filtrado
+// Eventos para filtrado
 
-selectProyectorMarca.onchange = () => {
-  if(selectProyectorMarca.value == "Marca"){
-    generateCatalagoGenerico();
-  }else{
-    
-  }
-}
+let btnReset = document.getElementById("btnReset");
+
+let filtroMarca = "Marca";
+let filtroCodRec = "Modelo";
+
+selectProyectorMarca.addEventListener("input", () => {
+  filtroMarca = selectProyectorMarca.value;
+});
+
+selectProyectorCodRec.addEventListener("input", () => {
+  filtroCodRec = selectProyectorCodRec.value;
+});
+
+btnReset.addEventListener("click", () => {
+  selectProyectorMarca.value = "Marca";
+  selectProyectorCodRec.value = "Modelo";
+  filtroMarca = "Marca";
+  filtroCodRec = "Modelo";
+});
 
 // Evento boton agregar carrito
 let btnAdd = document.querySelectorAll(".btnAdd");
