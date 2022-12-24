@@ -68,22 +68,24 @@ btnReset.addEventListener("click", () => {
   filtroCodRec = "Modelo";
 
   generateCatalagoGenerico();
+  generateOptionsMarca();
+  generateOptionsCodRec();
 });
 
 // Generar arrays por filtros
 
 function filtradoPorMarca(criterio) {
-  const array = proyectores.filter((el) => el.marca.includes(criterio));
+  const array = proyectoresStock.filter((el) => el.marca.includes(criterio));
   return array;
 }
 
 function filtradoPorCodRec(criterio) {
-  const array = proyectores.filter((el) => el.cod_rec.includes(criterio));
+  const array = proyectoresStock.filter((el) => el.cod_rec.includes(criterio));
   return array;
 }
 
 function filtradoMarcaCodRec(marca, codrec) {
-  const array = proyectores.filter((el) => el.marca.includes(marca));
+  const array = proyectoresStock.filter((el) => el.marca.includes(marca));
   const array2 = array.filter((el) => el.cod_rec.includes(codrec));
   return array2;
 }
@@ -92,7 +94,7 @@ function filtradoMarcaCodRec(marca, codrec) {
 
 function generateCatalagoGenerico() {
   catalogo.innerHTML = "";
-  for (const elemento of proyectores) {
+  for (const elemento of proyectoresStock) {
     let card = document.createElement("div");
     card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
     card.style = "width: 18rem";
@@ -366,7 +368,7 @@ function generateCatalogo() {
   } else if (filtroMarca == "Marca" && filtroCodRec != "Modelo") {
     generateCatalagoFiltradoPorCodRec();
   } else if (filtroMarca !== "Marca" && filtroCodRec !== "Modelo") {
-    if (proyectores.some((elemento) => elemento.marca == filtroMarca)) {
+    if (proyectoresStock.some((elemento) => elemento.marca == filtroMarca)) {
       if (
         proyectoresFiltradosPorMarca.some(
           (elemento) => elemento.cod_rec == filtroCodRec
@@ -406,7 +408,7 @@ selectProyectorMarca.onchange = () => {
   if (filtroMarca == "Marca") {
     generateOptionsCodRec();
   } else {
-    let arrayAux = proyectores.filter(
+    let arrayAux = proyectoresStock.filter(
       (elemento) => elemento.marca == filtroMarca
     );
     console.log(arrayAux);
