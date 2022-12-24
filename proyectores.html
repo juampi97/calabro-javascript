@@ -31,63 +31,6 @@
       <!-- Header nav -->
       <nav class="navbar bg-light nav_bkg fixed-top px-2 lg-px-4">
         <div class="container-fluid">
-          <!-- Submenu Izquierda - Operaciones -->
-          <div>
-            <nav class="navbar">
-              <div>
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasNavbar"
-                  aria-controls="offcanvasNavbar"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div
-                  class="offcanvas offcanvas-start"
-                  tabindex="-1"
-                  id="offcanvasNavbar"
-                  aria-labelledby="offcanvasNavbarLabel"
-                >
-                  <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                      ¿Que desea hacer?
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="offcanvas"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-
-                  <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                      <li class="nav-item">
-                        <a class="nav-link active disabled" href="#">Pedidos</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" href="./busquedas.html"
-                          >Busquedas</a
-                        >
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active disabled" href="#"
-                          >Reparaciones</a
-                        >
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active disabled" href="#"
-                          >Usuarios</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          </div>
           <!-- Logo UNLaM -->
           <div class="me-lg-auto">
             <a class="navbar-brand ps-2 ps-lg-4" href="./index.html">
@@ -114,9 +57,6 @@
                   aria-labelledby="offcanvasNavbar2Label"
                 >
                   <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbar2Label">
-                      Equipos
-                    </h5>
                     <button
                       type="button"
                       class="btn-close"
@@ -145,11 +85,34 @@
                       </li>
                       <li class="nav-item me-2">
                         <a
-                          class="nav-link active disabled"
+                          class="nav-link active"
                           aria-current="page"
                           href="./instrumentos.html"
                           >Instrumentos</a
                         >
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle text-black toggle"
+                          href="#"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Administrar
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Pedidos</a></li>
+                          <li>
+                            <a class="dropdown-item" href="#">Busquedas</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Reparaciones</a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">Usuarios</a>
+                          </li>
+                        </ul>
                       </li>
                       <li class="nav-item me-2">
                         <a
@@ -161,20 +124,36 @@
                       </li>
                       <li class="nav-item me-2">
                         <a
-                          class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1 disabled"
+                          class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1"
                           aria-current="page"
                           href="./carrito.html"
-                          >Carrito</a
-                        >
+                          width="50"
+                          ><svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            fill="currentColor"
+                            class="bi bi-cart-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                            /></svg
+                        ></a>
                       </li>
+                      <div>
+                        <button
+                          id="btnModalLogin"
+                          class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1 toggles"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#modalLogin"
+                          width="60"
+                        >
+                          Login
+                        </button>
+                      </div>
                     </ul>
-                    <!-- <div class="d-flex flex-column flex-lg-row w-50">
-                      <button class="btn btn-outline-success me-3 mb-2 w-auto h-auto mt-lg-1" type="submit">
-                        Login
-                      </button>
-                      <button class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1" type="submit">
-                        Sign-up
-                      </button> -->
                   </div>
                 </div>
               </div>
@@ -234,7 +213,7 @@
               class="form-select mx-3 my-1"
               name="busqueda_marca"
               aria-label="Formulario proyectores marca"
-              id="formProyectoresMarca"
+              id="selectProyectoresMarca"
             >
               <option selected>Marca</option>
             </select>
@@ -242,9 +221,9 @@
               class="form-select mx-3 my-1"
               name="busqueda_cod_rec"
               aria-label="Formulario proyectores codigo de recurso"
-              id="formProyectoresCodRec"
+              id="selectProyectoresCodRec"
             >
-              <option selected>Modelo</option>
+              <option selected value="false">Modelo</option>
             </select>
           </div>
           <!-- Cards proyectores -->

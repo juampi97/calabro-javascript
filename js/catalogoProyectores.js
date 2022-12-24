@@ -2,9 +2,13 @@
 
 let catalogo = document.getElementById("catalogo");
 
-// Genero todas las cards proyectores
+generateCatalagoGenerico();
 
-for (const elemento of proyectores) {
+// Funciones generar cards proyectores
+
+function generateCatalagoGenerico(){
+  catalogo.innerHTML=""
+  for (const elemento of proyectores) {
   let card = document.createElement("div");
   card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
   card.style = "width: 18rem";
@@ -67,24 +71,36 @@ for (const elemento of proyectores) {
 
   catalogo.append(card);
 }
+}
 
 // Generar opciones forms
 
-let selectProyectorMarca = document.getElementById('formProyectoresMarca')
+let selectProyectorMarca = document.getElementById('selectProyectoresMarca')
 marcaProyectores.forEach((elemento) => {
   let optionMarca = document.createElement("option");
   optionMarca.innerHTML += elemento;
+  optionMarca.value = elemento
   selectProyectorMarca.append(optionMarca)
 }
 )
 
-let selectProyectorCodRec = document.getElementById('formProyectoresCodRec')
+let selectProyectorCodRec = document.getElementById('selectProyectoresCodRec')
 codrecProyectores.forEach((elemento) => {
   let optionCodRec = document.createElement("option");
   optionCodRec.innerHTML += elemento;
   selectProyectorCodRec.append(optionCodRec)
 }
 )
+
+// Evento filtrado
+
+selectProyectorMarca.onchange = () => {
+  if(selectProyectorMarca.value == "Marca"){
+    generateCatalagoGenerico();
+  }else{
+    
+  }
+}
 
 // Evento boton agregar carrito
 let btnAdd = document.querySelectorAll(".btnAdd");
