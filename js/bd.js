@@ -74,12 +74,10 @@ proyectores.forEach((elemento) => {
   marcaProyectores.push(elemento.marca);
 });
 marcaProyectores = [... new Set(marcaProyectores)];
-console.log(marcaProyectores);
 
 proyectores.forEach((elemento) => {
   codrecProyectores.push(elemento.cod_rec);
 });
-console.log(codrecProyectores);
 
 // Genero arrays para forms Notebooks
 
