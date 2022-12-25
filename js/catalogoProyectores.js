@@ -386,36 +386,37 @@ function generateCatalogo() {
   }
 }
 
-// Evento boton agregar carrito
-let btnAdd = document.querySelectorAll(".btnAdd");
-btnAdd.forEach((boton) => {
-  boton.addEventListener("click", () => {
-    let elemento = boton.id.split("-");
-    
-  });
-});
-
 //Eventos actulizacion
 
 window.addEventListener("load", function () {
   generateCatalagoGenerico();
   generateOptionsMarca();
   generateOptionsCodRec();
+
+  generateBTNaddID()
 });
 
 selectProyectorMarca.onchange = () => {
   generateCatalogo();
+
   if (filtroMarca == "Marca") {
     generateOptionsCodRec();
+
+    generateBTNaddID()
+
+
   } else {
     let arrayAux = proyectoresStock.filter(
       (elemento) => elemento.marca == filtroMarca
     );
-    console.log(arrayAux);
     generateOptionsCodRecFiltrado(arrayAux);
+
+    generateBTNaddID()
   }
 };
 
 selectProyectorCodRec.onchange = () => {
   generateCatalogo();
+
+  generateBTNaddID()
 };
