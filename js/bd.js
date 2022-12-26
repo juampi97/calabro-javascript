@@ -47,7 +47,21 @@ class Notebook {
   }
 }
 
+class Usuario {
+  constructor(name, user, pass, tipo) {
+    this.name = name;
+    this.user = user;
+    this.pass = pass;
+    this.tipo = tipo.toUpperCase();
+  }
+}
+
 //Simulo BD
+
+const usuarios = [
+  new Usuario("Juan Pablo","juampi","12345","administrador"),
+  new Usuario("Nicolas","nicolas","12345","docente"),
+]
 
 const proyectores = [
   new Proyector("VIEW1", "VIEWSONIC", "MOD1", "SN001", 1, 0),
@@ -73,7 +87,7 @@ let codrecProyectores = [];
 proyectores.forEach((elemento) => {
   marcaProyectores.push(elemento.marca);
 });
-marcaProyectores = [... new Set(marcaProyectores)];
+marcaProyectores = [...new Set(marcaProyectores)];
 
 proyectores.forEach((elemento) => {
   codrecProyectores.push(elemento.cod_rec);
@@ -87,7 +101,7 @@ let codrecNotebooks = [];
 notebooks.forEach((elemento) => {
   marcaNotebooks.push(elemento.marca);
 });
-marcaNotebooks = [... new Set(marcaNotebooks)];
+marcaNotebooks = [...new Set(marcaNotebooks)];
 
 notebooks.forEach((elemento) => {
   codrecNotebooks.push(elemento.cod_rec);
