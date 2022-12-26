@@ -45,20 +45,10 @@ let filtroCodRec = "Modelo";
 
 selectProyectorMarca.addEventListener("input", () => {
   filtroMarca = selectProyectorMarca.value;
-  proyectoresFiltradosPorMarca = filtradoPorMarca(filtroMarca);
-  proyectoresFiltradosPorMarcaCodRec = filtradoMarcaCodRec(
-    filtroMarca,
-    filtroCodRec
-  );
 });
 
 selectProyectorCodRec.addEventListener("input", () => {
   filtroCodRec = selectProyectorCodRec.value;
-  proyectoresFiltradosPorCodRec = filtradoPorCodRec(filtroCodRec);
-  proyectoresFiltradosPorMarcaCodRec = filtradoMarcaCodRec(
-    filtroMarca,
-    filtroCodRec
-  );
 });
 
 btnReset.addEventListener("click", () => {
@@ -70,32 +60,32 @@ btnReset.addEventListener("click", () => {
   generateOptionsMarca();
   generateOptionsCodRec();
 
-  generateCatalogo();
+  generateCatalogo(proyectoresStock);
 
-  generateBTNaddID()
+  generateBTNaddID();
 });
 
 // Generar arrays por filtros
 
-function filtradoPorMarca(criterio) {
-  const array = proyectoresStock.filter((el) => el.marca.includes(criterio));
+function filtradoPorMarca(arrayProyectores, criterio) {
+  const array = arrayProyectores.filter((el) => el.marca.includes(criterio));
   return array;
 }
 
-function filtradoPorCodRec(criterio) {
-  const array = proyectoresStock.filter((el) => el.cod_rec.includes(criterio));
+function filtradoPorCodRec(arrayProyectores, criterio) {
+  const array = arrayProyectores.filter((el) => el.cod_rec.includes(criterio));
   return array;
 }
 
-function filtradoMarcaCodRec(marca, codrec) {
-  const array = proyectoresStock.filter((el) => el.marca.includes(marca));
+function filtradoMarcaCodRec(arrayProyectores, marca, codrec) {
+  const array = arrayProyectores.filter((el) => el.marca.includes(marca));
   const array2 = array.filter((el) => el.cod_rec.includes(codrec));
   return array2;
 }
 
 // Funciones generar cards proyectores
 
-function generateCatalagoGenerico(array) {
+function generateCards(array) {
   catalogo.innerHTML = "";
   for (const elemento of array) {
     let card = document.createElement("div");
@@ -132,7 +122,7 @@ function generateCatalagoGenerico(array) {
         </div>
       </div>`;
     } else {
-          card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
+      card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
         ${elemento.cod_rec}
       </h5>
       <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
@@ -162,23 +152,20 @@ function generateCatalagoGenerico(array) {
   }
 }
 
-function generateCatalogo() {
-  
+function generateCatalogo(arrayStock) {
   if (filtroMarca == "Marca" && filtroCodRec == "Modelo") {
-    generateCatalagoGenerico(proyectoresStock);
+    generateCards(arrayStock);
   } else if (filtroMarca != "Marca" && filtroCodRec == "Modelo") {
-    generateCatalagoGenerico(proyectoresFiltradosPorMarca);
+    let arrayFiltradoMarca = filtradoPorMarca(arrayStock, filtroMarca);
+    generateCards(arrayFiltradoMarca);
   } else if (filtroMarca == "Marca" && filtroCodRec != "Modelo") {
-    generateCatalagoGenerico(proyectoresFiltradosPorCodRec);
-    
+    let arrayFiltradoCodRec = filtradoPorCodRec(arrayStock, filtroCodRec);
+    generateCards(arrayFiltradoCodRec);
   } else if (filtroMarca !== "Marca" && filtroCodRec !== "Modelo") {
-    if (proyectoresStock.some((elemento) => elemento.marca == filtroMarca)) {
-      if (
-        proyectoresFiltradosPorMarca.some(
-          (elemento) => elemento.cod_rec == filtroCodRec
-        )
-      ) {
-        generateCatalagoGenerico(proyectoresFiltradosPorCodRec);
+    if (arrayStock.some((elemento) => elemento.marca == filtroMarca)) {
+      if (arrayStock.some((elemento) => elemento.cod_rec == filtroCodRec)) {
+        let arrayFiltradoCodRec = filtradoPorCodRec(arrayStock, filtroCodRec);
+        generateCards(arrayFiltradoCodRec);
       } else {
         catalogo.innerHTML =
           '<p class="text-center my-2">Elemento no encontrado</p>';
@@ -193,36 +180,33 @@ function generateCatalogo() {
 //Eventos actulizacion
 
 window.addEventListener("load", function () {
-  
   generateOptionsMarca();
   generateOptionsCodRec();
-  
-  generateCatalogo();
 
-  generateBTNaddID()
+  generateCatalogo(proyectoresStock);
+
+  generateBTNaddID();
 });
 
 selectProyectorMarca.onchange = () => {
-  generateCatalogo();
+  generateCatalogo(proyectoresStock);
 
   if (filtroMarca == "Marca") {
     generateOptionsCodRec();
 
-    generateBTNaddID()
-
-
+    generateBTNaddID();
   } else {
     let arrayAux = proyectoresStock.filter(
       (elemento) => elemento.marca == filtroMarca
     );
     generateOptionsCodRecFiltrado(arrayAux);
 
-    generateBTNaddID()
+    generateBTNaddID();
   }
 };
 
 selectProyectorCodRec.onchange = () => {
-  generateCatalogo();
+  generateCatalogo(proyectoresStock);
 
-  generateBTNaddID()
+  generateBTNaddID();
 };
