@@ -154,13 +154,28 @@ function generateCards(array) {
 
 function generateCatalogo(arrayStock) {
   if (filtroMarca == "Marca" && filtroCodRec == "Modelo") {
-    generateCards(arrayStock);
+    if (arrayStock.length == 0) {
+      catalogo.innerHTML =
+        '<p class="text-center my-2">Elemento no encontrado</p>';
+    } else {
+      generateCards(arrayStock);
+    }
   } else if (filtroMarca != "Marca" && filtroCodRec == "Modelo") {
     let arrayFiltradoMarca = filtradoPorMarca(arrayStock, filtroMarca);
-    generateCards(arrayFiltradoMarca);
+    if (arrayFiltradoMarca.length == 0) {
+      catalogo.innerHTML =
+        '<p class="text-center my-2">Elemento no encontrado</p>';
+    } else {
+      generateCards(arrayFiltradoMarca);
+    }
   } else if (filtroMarca == "Marca" && filtroCodRec != "Modelo") {
     let arrayFiltradoCodRec = filtradoPorCodRec(arrayStock, filtroCodRec);
-    generateCards(arrayFiltradoCodRec);
+    if (arrayFiltradoCodRec == 0) {
+      catalogo.innerHTML =
+        '<p class="text-center my-2">Elemento no encontrado</p>';
+    } else {
+      generateCards(arrayFiltradoCodRec);
+    }
   } else if (filtroMarca !== "Marca" && filtroCodRec !== "Modelo") {
     if (arrayStock.some((elemento) => elemento.marca == filtroMarca)) {
       if (arrayStock.some((elemento) => elemento.cod_rec == filtroCodRec)) {
@@ -182,31 +197,25 @@ function generateCatalogo(arrayStock) {
 window.addEventListener("load", function () {
   generateOptionsMarca();
   generateOptionsCodRec();
-
   generateCatalogo(proyectoresStock);
-
   generateBTNaddID();
 });
 
 selectProyectorMarca.onchange = () => {
   generateCatalogo(proyectoresStock);
-
   if (filtroMarca == "Marca") {
     generateOptionsCodRec();
-
     generateBTNaddID();
   } else {
     let arrayAux = proyectoresStock.filter(
       (elemento) => elemento.marca == filtroMarca
     );
     generateOptionsCodRecFiltrado(arrayAux);
-
     generateBTNaddID();
   }
 };
 
 selectProyectorCodRec.onchange = () => {
   generateCatalogo(proyectoresStock);
-
   generateBTNaddID();
 };
