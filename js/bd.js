@@ -59,9 +59,9 @@ class Usuario {
 //Simulo BD
 
 const usuarios = [
-  new Usuario("Juan Pablo","juampi","12345","administrador"),
-  new Usuario("Nicolas","nicolas","12345","docente"),
-]
+  new Usuario("Juan Pablo", "juampi", "12345", "administrador"),
+  new Usuario("Nicolas", "nicolas", "12345", "docente"),
+];
 
 const proyectores = [
   new Proyector("VIEW1", "VIEWSONIC", "MOD1", "SN001", 1, 0),
@@ -106,3 +106,10 @@ marcaNotebooks = [...new Set(marcaNotebooks)];
 notebooks.forEach((elemento) => {
   codrecNotebooks.push(elemento.cod_rec);
 });
+
+// Agrego BD al storage
+
+localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
+localStorage.setItem("proyectoresBD", JSON.stringify(proyectores));
+localStorage.setItem("hdmiBD", adicionalHDMI);
+localStorage.setItem("zapatillaBD", adicionalZapatilla);

@@ -3,6 +3,11 @@ let proyectoresReservados = [];
 
 let elementosCarrito = 0;
 
+localStorage.setItem("proyectoresStock",JSON.stringify(proyectoresStock));
+localStorage.setItem("proyectoresReservados",JSON.stringify(proyectoresReservados));
+sessionStorage.setItem("elementosCarrito",JSON.stringify(elementosCarrito));
+
+
 // Evento boton agregar carrito
 
 function generateBTNaddID() {
