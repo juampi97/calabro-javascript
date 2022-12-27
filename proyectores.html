@@ -90,7 +90,7 @@
                         <a
                           class="nav-link active disabled"
                           aria-current="page"
-                          href="./notebooks.html"
+                          href="#"
                           >Notebooks</a
                         >
                       </li>
@@ -98,7 +98,7 @@
                         <a
                           class="nav-link active"
                           aria-current="page"
-                          href="./instrumentos.html"
+                          href="#"
                           >Instrumentos</a
                         >
                       </li>
@@ -198,6 +198,50 @@
     </header>
     <!-- Contenido principal -->
     <main>
+      <!-- Modal login -->
+      <div
+        class="modal"
+        id="modalLogin"
+        tabindex="-1"
+        aria-labelledby="modalLoginLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="modalLoginLabel">Ingresá</h3>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            <div class="modal-body py-2 px-4">
+              <input
+                id="userLogin"
+                class="form-control my-4"
+                type="email"
+                placeholder="Ingresa tu usuario"
+                required
+              />
+              <input
+                id="passLogin"
+                class="form-control my-4"
+                type="password"
+                placeholder="Ingresa tu contraseña"
+                required
+              />
+            </div>
+            <div class="modal-footer d-block">
+
+              <button class="btn btn-outline-secondary" id="btnLogin" type="submit">
+                Ingresar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container-fluid main_reservas">
         <div class="row d-flex justify-content-center">
           <!-- Titulo pagina -->
