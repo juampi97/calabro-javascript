@@ -14,6 +14,7 @@
     <!-- JS -->
     <script defer src="./js/bd.js"></script>
     <script defer src="./js/login.js"></script>
+    <script defer src="./js/catalogoProyectores.js"></script>
     <script defer src="./js/carritoProyectores.js"></script>
 
     <!-- JavaScript Bundle with Popper -->
@@ -101,7 +102,7 @@
                           >Instrumentos</a
                         >
                       </li>
-                      <li class="nav-item dropdown">
+                      <li class="nav-item dropdown d-none" id="btnAdmin">
                         <a
                           class="nav-link dropdown-toggle text-black toggle"
                           href="#"
@@ -124,7 +125,7 @@
                           </li>
                         </ul>
                       </li>
-                      <li class="nav-item me-2">
+                      <li class="nav-item me-2 d-none">
                         <a
                           class="nav-link active"
                           aria-current="page"
@@ -170,16 +171,22 @@
                         >
                           Login
                         </button>
-                        <button
-                          id="btnLogout"
-                          class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1 d-none toggles"
-                          type="button"
-                          width="60"
-                        >
-                          Logout
-                        </button>
+                        <li class="nav-item dropdown d-none toggles" id="btnAdmin">
+                          <a
+                            class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1"
+                            id="nombreUsuario"
+                            href="#"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a id="btnLogout" class="dropdown-item" href="#">Logout</a></li>
+                          </ul>
+                        </li>
                       </div>
-                      <p id="nombreUsuario" class=" d-none toggles my-2">Juan Pablo</p>
                     </ul>
                   </div>
                 </div>

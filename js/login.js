@@ -6,6 +6,7 @@ let btnLogout = document.getElementById("btnLogout");
 let modalLogin = document.getElementById("modalLogin");
 let modal = new bootstrap.Modal(modalLogin);
 let toggles = document.querySelectorAll(".toggles");
+let btnAdmin = document.getElementById("btnAdmin")
 
 // Borrar datos storage
 
@@ -53,10 +54,19 @@ function presentarInfo(array, clase) {
   });
 }
 
+function funcionesAdmin(usuario){
+  if(usuario.tipo == "ADMINISTRADOR" ){
+    btnAdmin.className = "nav-item dropdown"
+  }else{
+    btnAdmin.className = "nav-item dropdown d-none"
+  }
+}
+
 function estaLogueado(usuario) {
   if (usuario) {
     saludar(usuario);
     presentarInfo(toggles, "d-none");
+    funcionesAdmin(usuario);
   }
 }
 
@@ -85,4 +95,5 @@ btnLogin.addEventListener("click", (e) => {
 btnLogout.addEventListener("click", () => {
   borrarDatos();
   presentarInfo(toggles, "d-none");
+  btnAdmin.className = "nav-item dropdown d-none"
 });
