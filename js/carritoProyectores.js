@@ -1,5 +1,6 @@
 let proyectoresStock = proyectores.slice(0);
 let proyectoresReservados = [];
+let carritoActual = [];
 
 let elementosCarrito = 0;
 
