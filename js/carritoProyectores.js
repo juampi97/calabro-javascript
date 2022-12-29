@@ -24,10 +24,10 @@ function generateBTNaddID() {
 function actulizarBTNCarrito() {
   let carritoActual = JSON.parse(sessionStorage.getItem("carritoActual"));
   let itemsCarrito = document.querySelector("#burbujaCarrito");
-  if(carritoActual == null){
+  if (carritoActual == null) {
     itemsCarrito.innerHTML = "";
     itemsCarrito.class = "badge rounded-pill bg-warning d-none";
-  }else{
+  } else {
     itemsCarrito.class = "badge rounded-pill bg-warning";
     itemsCarrito.innerHTML = `<p>${carritoActual.length}</p>`;
   }

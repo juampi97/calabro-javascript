@@ -14,8 +14,8 @@
     <!-- JS -->
     <script defer src="./js/bd.js"></script>
     <script defer src="./js/login.js"></script>
-    <script defer src="./js/catalogoProyectores.js"></script>
     <script defer src="./js/carritoProyectores.js"></script>
+    <script defer src="./js/listadoCarrito.js"></script>
 
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -95,10 +95,7 @@
                         >
                       </li>
                       <li class="nav-item me-2">
-                        <a
-                          class="nav-link active"
-                          aria-current="page"
-                          href="#"
+                        <a class="nav-link active" aria-current="page" href="#"
                           >Instrumentos</a
                         >
                       </li>
@@ -136,32 +133,31 @@
                       <div>
                         <a href="./carrito.html">
                           <button
-                          type="button"
-                          id="btnCarrito"
-                          class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1"
-                          width="60"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="12"
-                            height="12"
-                            fill="currentColor"
-                            class="bi bi-cart-fill"
-                            viewBox="0 0 16 16"
+                            type="button"
+                            id="btnCarrito"
+                            class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1"
+                            width="60"
                           >
-                            <path
-                              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                            />
-                          </svg>
-                          <span
-                            id="burbujaCarrito"
-                            class="badge rounded-pill bg-warning"
-                          >
-                            <span class="visually-hidden"></span>
-                          </span>
-                        </button>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="12"
+                              height="12"
+                              fill="currentColor"
+                              class="bi bi-cart-fill"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                              />
+                            </svg>
+                            <span
+                              id="burbujaCarrito"
+                              class="badge rounded-pill bg-warning"
+                            >
+                              <span class="visually-hidden"></span>
+                            </span>
+                          </button>
                         </a>
-                        
                       </div>
                       <div>
                         <button
@@ -174,7 +170,10 @@
                         >
                           Login
                         </button>
-                        <li class="nav-item dropdown d-none toggles" id="btnAdmin">
+                        <li
+                          class="nav-item dropdown d-none toggles"
+                          id="btnAdmin"
+                        >
                           <a
                             class="btn btn-success me-3 mb-2 w-auto h-auto mt-lg-1"
                             id="nombreUsuario"
@@ -183,10 +182,13 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                           >
-                            
                           </a>
                           <ul class="dropdown-menu">
-                            <li><a id="btnLogout" class="dropdown-item" href="#">Logout</a></li>
+                            <li>
+                              <a id="btnLogout" class="dropdown-item" href="#"
+                                >Logout</a
+                              >
+                            </li>
                           </ul>
                         </li>
                       </div>
@@ -237,8 +239,11 @@
               />
             </div>
             <div class="modal-footer d-block">
-
-              <button class="btn btn-outline-secondary" id="btnLogin" type="submit">
+              <button
+                class="btn btn-outline-secondary"
+                id="btnLogin"
+                type="submit"
+              >
                 Ingresar
               </button>
             </div>
@@ -246,10 +251,12 @@
         </div>
       </div>
       <!-- Contenido principal -->
-      <div class="container-fluid main_principal">
+      <div class="container-fluid main_principal py-4">
         <div class="row d-flex flex-row justify-content-center pt-3">
-          <div class="col-10 text-center">
-            <p>Carrito</p>
+          <div class="col-11 col-md-6 text-center">
+            <ol  id="listadoCarrito" class="list-group list-group-numbered">
+
+            </ol>
           </div>
         </div>
       </div>
