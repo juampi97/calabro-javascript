@@ -23,21 +23,18 @@ function generateBTNaddID() {
 
 function actulizarBTNCarrito() {
   let carritoActual = JSON.parse(sessionStorage.getItem("carritoActual"));
-  let elementos = carritoActual.length;
-
   let itemsCarrito = document.querySelector("#burbujaCarrito");
-  if (elementos == 0) {
+  if(carritoActual == null){
     itemsCarrito.innerHTML = "";
     itemsCarrito.class = "badge rounded-pill bg-warning d-none";
-  } else {
+  }else{
     itemsCarrito.class = "badge rounded-pill bg-warning";
-    itemsCarrito.innerHTML = `<p>${elementos}</p>`;
+    itemsCarrito.innerHTML = `<p>${carritoActual.length}</p>`;
   }
 }
 
 function actualizarProyectoresStock(itemID) {
   let instrumento = proyectoresStock.find((el) => el.cod_rec == itemID);
-  // proyectoresReservados.push(instrumento);
   carritoActual.push(instrumento);
   sessionStorage.setItem("carritoActual", JSON.stringify(carritoActual));
 
