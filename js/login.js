@@ -69,6 +69,8 @@ function funcionesAdmin(usuario) {
 
 function userlogin(usuario) {
   if (usuario) {
+    usuarioLogeado = true;
+    sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
     saludar(usuario);
     presentarInfo(toggles, "d-none");
     funcionesAdmin(usuario);
