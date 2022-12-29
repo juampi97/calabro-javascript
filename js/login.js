@@ -1,7 +1,7 @@
 // Variable que indique si el usuario se logeo o no
 
- let usuarioLogeado;
-// sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
+let usuarioLogeado = false;
+sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
 
 // Traigo elementos del DOM - Modal
 let userLogin = document.getElementById("userLogin");
@@ -17,8 +17,7 @@ let btnAdmin = document.getElementById("btnAdmin");
 
 function borrarDatos() {
   // localStorage.clear();
-  //sessionStorage.clear();
-  sessionStorage.removeItem("usuarioLogeado")
+  sessionStorage.clear();
 }
 
 // Validar usuario para login
@@ -45,7 +44,7 @@ function guardarDatos(usuarioDB, storage) {
     pass: usuarioDB.pass,
   };
 
-  storage.setItem("usuarioLogeado", JSON.stringify(usuario));
+  storage.setItem("usuario", JSON.stringify(usuario));
 }
 
 // Presentar info usuario logueado
@@ -97,6 +96,7 @@ btnLogin.addEventListener("click", (e) => {
       guardarDatos(data, sessionStorage);
       modal.hide();
       usuarioLogeado = true;
+      sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
       userlogin(data);
     }
   }
