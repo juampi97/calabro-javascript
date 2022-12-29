@@ -1,3 +1,8 @@
+// Variable que indique si el usuario se logeo o no
+
+ let usuarioLogeado;
+// sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
+
 // Traigo elementos del DOM - Modal
 let userLogin = document.getElementById("userLogin");
 let passLogin = document.getElementById("passLogin");
@@ -6,13 +11,14 @@ let btnLogout = document.getElementById("btnLogout");
 let modalLogin = document.getElementById("modalLogin");
 let modal = new bootstrap.Modal(modalLogin);
 let toggles = document.querySelectorAll(".toggles");
-let btnAdmin = document.getElementById("btnAdmin")
+let btnAdmin = document.getElementById("btnAdmin");
 
 // Borrar datos storage
 
 function borrarDatos() {
-//   localStorage.clear();
-  sessionStorage.clear();
+  // localStorage.clear();
+  //sessionStorage.clear();
+  sessionStorage.removeItem("usuarioLogeado")
 }
 
 // Validar usuario para login
@@ -34,12 +40,12 @@ function validarUsuario(usersDB, user, pass) {
 
 function guardarDatos(usuarioDB, storage) {
   const usuario = {
-    name: usuarioDB.nombre,
-    user: usuarioDB.mail,
+    name: usuarioDB.name,
+    user: usuarioDB.user,
     pass: usuarioDB.pass,
   };
 
-  storage.setItem("usuario", JSON.stringify(usuario));
+  storage.setItem("usuarioLogeado", JSON.stringify(usuario));
 }
 
 // Presentar info usuario logueado
@@ -54,20 +60,27 @@ function presentarInfo(array, clase) {
   });
 }
 
-function funcionesAdmin(usuario){
-  if(usuario.tipo == "ADMINISTRADOR" ){
-    btnAdmin.className = "nav-item dropdown"
-  }else{
-    btnAdmin.className = "nav-item dropdown d-none"
+function funcionesAdmin(usuario) {
+  if (usuario.tipo == "ADMINISTRADOR") {
+    btnAdmin.className = "nav-item dropdown";
+  } else {
+    btnAdmin.className = "nav-item dropdown d-none";
   }
 }
 
-function estaLogueado(usuario) {
+function userlogin(usuario) {
   if (usuario) {
     saludar(usuario);
     presentarInfo(toggles, "d-none");
     funcionesAdmin(usuario);
   }
+}
+
+// Recuperar datos storage
+
+function recuperarUsuario(storage) {
+  let usuarioEnStorage = JSON.parse(storage.getItem("usuario"));
+  return usuarioEnStorage;
 }
 
 // Evento click boton login
@@ -82,10 +95,9 @@ btnLogin.addEventListener("click", (e) => {
       alert(`Usuario y/o contraseña erróneos`);
     } else {
       guardarDatos(data, sessionStorage);
-      //Recién ahora cierro el cuadrito de login
       modal.hide();
-      //Muestro la info para usuarios logueados
-      estaLogueado(data);
+      usuarioLogeado = true;
+      userlogin(data);
     }
   }
 });
@@ -95,5 +107,9 @@ btnLogin.addEventListener("click", (e) => {
 btnLogout.addEventListener("click", () => {
   borrarDatos();
   presentarInfo(toggles, "d-none");
-  btnAdmin.className = "nav-item dropdown d-none"
+  btnAdmin.className = "nav-item dropdown d-none";
+  usuarioLogeado = false;
+  sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
 });
+
+userlogin(recuperarUsuario(sessionStorage));
