@@ -20,6 +20,28 @@ function generateListadoCarrito() {
     }
   }
 }
+
+// Boton vaciar carrito
+
+let btnVaciarCarrito = document.getElementById('btnVaciarCarrito')
+btnVaciarCarrito.addEventListener('click',() =>{
+  let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
+  if (arrayProyectores == null) {
+    arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
+  }
+  console.log(arrayProyectores);
+  arrayProyectores.forEach((elemento) => {
+    elemento.estado = "DISPONIBLE";
+  })
+  
+  localStorage.setItem("proyectoresStock", JSON.stringify(arrayProyectores));
+  
+  let elementosCarrito = 0;
+  localStorage.setItem("elementosCarrito", (elementosCarrito));
+
+  generateListadoCarrito();
+})
+
 window.addEventListener("load", function () {
   generateListadoCarrito();
 });
