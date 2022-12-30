@@ -1,11 +1,12 @@
 class Proyector {
-  constructor(cod_rec, marca, modelo, sn, vga, hdmi) {
+  constructor(cod_rec, marca, modelo, sn, vga, hdmi, estado) {
     this.cod_rec = cod_rec.toUpperCase();
     this.marca = marca.toUpperCase();
     this.modelo = modelo.toUpperCase();
     this.sn = sn.toUpperCase();
     this.vga = parseInt(vga);
     this.hdmi = parseInt(hdmi);
+    this.estado = estado.toUpperCase();
   }
   salidaHDMI() {
     if (this.hdmi) {
@@ -63,12 +64,21 @@ const usuarios = [
   new Usuario("Nicolas", "nicolas", "12345", "docente"),
 ];
 
-const proyectores = [
-  new Proyector("VIEW1", "VIEWSONIC", "MOD1", "SN001", 1, 0),
-  new Proyector("VIEW2", "VIEWSONIC", "MOD1", "SN002", 0, 1),
-  new Proyector("BENQ1", "BENQ", "MOD2", "SN003", 1, 0),
-  new Proyector("BENQ2", "BENQ", "MOD3", "SN004", 1, 1),
+// const proyectores = [
+//   new Proyector("VIEW1", "VIEWSONIC", "MOD1", "SN001", 1, 0),
+//   new Proyector("VIEW2", "VIEWSONIC", "MOD1", "SN002", 0, 1),
+//   new Proyector("BENQ1", "BENQ", "MOD2", "SN003", 1, 0),
+//   new Proyector("BENQ2", "BENQ", "MOD3", "SN004", 1, 1),
+// ];
+const proyectoresStock = [
+  new Proyector("VIEW1", "VIEWSONIC", "MOD1", "SN001", 1, 0,"DISPONIBLE"),
+  new Proyector("VIEW2", "VIEWSONIC", "MOD1", "SN002", 0, 1,"DISPONIBLE"),
+  new Proyector("BENQ1", "BENQ", "MOD2", "SN003", 1, 0,"DISPONIBLE"),
+  new Proyector("BENQ2", "BENQ", "MOD3", "SN004", 1, 1,"DISPONIBLE"),
 ];
+
+let proyectores = proyectoresStock.slice(0)
+
 const notebooks = [
   new Notebook("CR2", "CR", "MOD1", "SN006", 0, 1),
   new Notebook("CR1", "CR", "MOD1", "SN005", 1, 0),
@@ -84,12 +94,12 @@ let adicionalZapatilla = 10;
 let marcaProyectores = [];
 let codrecProyectores = [];
 
-proyectores.forEach((elemento) => {
+proyectoresStock.forEach((elemento) => {
   marcaProyectores.push(elemento.marca);
 });
 marcaProyectores = [...new Set(marcaProyectores)];
 
-proyectores.forEach((elemento) => {
+proyectoresStock.forEach((elemento) => {
   codrecProyectores.push(elemento.cod_rec);
 });
 
@@ -110,6 +120,10 @@ notebooks.forEach((elemento) => {
 // Agrego BD al storage
 
 localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
-localStorage.setItem("proyectoresBD", JSON.stringify(proyectores));
+window.addEventListener("load", function () {
+  localStorage.setItem("proyectores", JSON.stringify(proyectores));
+})
+/*
 localStorage.setItem("hdmiBD", adicionalHDMI);
 localStorage.setItem("zapatillaBD", adicionalZapatilla);
+*/

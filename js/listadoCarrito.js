@@ -1,12 +1,14 @@
 // Generacion listado carrito
 
 function generateListadoCarrito() {
-    let carritoActual = JSON.parse(sessionStorage.getItem("carritoActual"));
-    let listadoCarrito = document.getElementById("listadoCarrito");
-    if (carritoActual == null) {
-      listadoCarrito.innerHTML = "";
-    } else {
-      for (const elemento of carritoActual) {
+  let Carrito = JSON.parse(localStorage.getItem("elementosCarrito"));
+  let proyectoresStock = JSON.parse(localStorage.getItem("proyectoresStock"));
+  let listadoCarrito = document.getElementById("listadoCarrito");
+  if (Carrito == null) {
+    listadoCarrito.innerHTML = "";
+  } else {
+    for (const elemento of proyectoresStock) {
+      if (elemento.estado == "CARRITO") {
         listadoCarrito.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-start">
   <div class="ms-2 me-auto">
     <div class="fw-bold">${elemento.cod_rec}</div>
@@ -17,6 +19,7 @@ function generateListadoCarrito() {
       }
     }
   }
-  window.addEventListener("load", function () {
-    generateListadoCarrito();
-  });
+}
+window.addEventListener("load", function () {
+  generateListadoCarrito();
+});
