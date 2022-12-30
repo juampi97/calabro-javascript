@@ -22,6 +22,41 @@ function generateListadoCarrito() {
       }
     }
   }
+  generateAddHDMI();
+  generateAddZAPATILLA();
+}
+function generateAddHDMI(){
+  let addHDMI = localStorage.getItem("carritoHDMI");
+  if(addHDMI != null){
+    let listadoCarrito = document.getElementById("listadoCarrito");
+    listadoCarrito.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Adicional HDMI</div>
+      Cantidad: 
+      <span class="badge bg-primary rounded-pill ">${addHDMI}</span>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-danger py-1 btnEliminar" id="btnEliminar-addHDMI">x</button>
+    </div>
+    </li>`;
+  }
+}
+
+function generateAddZAPATILLA(){
+  let addZAPATILLA = localStorage.getItem("carritoZAPATILLA");
+  if(addZAPATILLA != null){
+    let listadoCarrito = document.getElementById("listadoCarrito");
+    listadoCarrito.innerHTML += `<li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Adicional zapatilla</div>
+      Cantidad: 
+      <span class="badge bg-primary rounded-pill ">${addZAPATILLA}</span>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-danger py-1 btnEliminar" id="btnEliminar-addHDMI">x</button>
+    </div>
+    </li>`;
+  }
 }
 
 // Boton vaciar carrito

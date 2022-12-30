@@ -46,14 +46,14 @@ function addZAPATILLArequired(btnID) {
   );
   if (checkboxZAPATILLA != null) {
     if (checkboxZAPATILLA.checked) {
-      let checkZAPATILLA = JSON.parse(
-        localStorage.getItem("checkZAPATILLA")
+      let carritoZAPATILLA = JSON.parse(
+        localStorage.getItem("carritoZAPATILLA")
       );
-      if (checkZAPATILLA == null) {
-        checkZAPATILLA = 0;
+      if (carritoZAPATILLA == null) {
+        carritoZAPATILLA = 0;
       }
-      checkZAPATILLA++;  
-      localStorage.setItem("checkZAPATILLA", checkZAPATILLA);
+      carritoZAPATILLA++;  
+      localStorage.setItem("carritoZAPATILLA", carritoZAPATILLA);
     }
     }
   }
