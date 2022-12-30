@@ -121,8 +121,6 @@ window.addEventListener("load", function () {
   let usuario = recuperarUsuario(sessionStorage);
   if(usuario != null){
     let btnAdmin = document.getElementById("btnAdmin");
-    console.log('holii');
-    console.log(usuario.tipo);
     if (usuario.tipo == "ADMINISTRADOR") {
       btnAdmin.className = "nav-item dropdown";
     } else {

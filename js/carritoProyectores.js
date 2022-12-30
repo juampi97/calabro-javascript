@@ -11,6 +11,9 @@ function generateBTNaddID() {
       let elementos = boton.id.split("-");
       let btnAddID = elementos[1];
 
+      addHDMIrequired(btnAddID);
+      addZAPATILLArequired(btnAddID);
+
       actualizarProyectoresStock(btnAddID);
 
       actulizarBTNCarrito();
@@ -20,6 +23,41 @@ function generateBTNaddID() {
     });
   });
 }
+
+function addHDMIrequired(btnID) {
+  let checkboxHDMI = document.getElementById(`adicionalHDMI-${btnID}`);
+  if (checkboxHDMI != null) {
+    if (checkboxHDMI.checked) {
+      let carritoHDMI = JSON.parse(
+        localStorage.getItem("carritoHDMI")
+      );
+      if (carritoHDMI == null) {
+        carritoHDMI = 0;
+      }
+      carritoHDMI++;  
+      localStorage.setItem("carritoHDMI", carritoHDMI);
+    }
+  }
+}
+
+function addZAPATILLArequired(btnID) {
+  let checkboxZAPATILLA = document.getElementById(
+    `adicionalZAPATILLA-${btnID}`
+  );
+  if (checkboxZAPATILLA != null) {
+    if (checkboxZAPATILLA.checked) {
+      let checkZAPATILLA = JSON.parse(
+        localStorage.getItem("checkZAPATILLA")
+      );
+      if (checkZAPATILLA == null) {
+        checkZAPATILLA = 0;
+      }
+      checkZAPATILLA++;  
+      localStorage.setItem("checkZAPATILLA", checkZAPATILLA);
+    }
+    }
+  }
+
 
 function actulizarBTNCarrito() {
   let elementosCarrito = localStorage.getItem("elementosCarrito");
@@ -46,10 +84,9 @@ function actualizarProyectoresStock(itemID) {
   position = arrayProyectores.indexOf(instrumento);
   arrayProyectores[position].estado = "CARRITO";
   localStorage.setItem("proyectoresStock", JSON.stringify(arrayProyectores));
-  
-  elementosCarrito = cantidadElementosCarrito();
-  localStorage.setItem("elementosCarrito", (elementosCarrito));
 
+  elementosCarrito = cantidadElementosCarrito();
+  localStorage.setItem("elementosCarrito", elementosCarrito);
 }
 
 function cantidadElementosCarrito() {
