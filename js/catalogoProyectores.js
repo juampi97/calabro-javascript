@@ -88,19 +88,20 @@ function filtradoMarcaCodRec(arrayProyectores, marca, codrec) {
 function generateCards(array) {
   catalogo.innerHTML = "";
   for (const elemento of array) {
-    let card = document.createElement("div");
-    card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
-    card.style = "width: 18rem";
-    card.id = `${elemento.cod_rec}`;
+    if (elemento.estado == "DISPONIBLE") {
+      let card = document.createElement("div");
+      card.className = "col-sm-10 col-md-5 card m-2 py-2 cardCatalogo";
+      card.style = "width: 18rem";
+      card.id = `${elemento.cod_rec}`;
 
-    if (elemento.hdmi) {
-      card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
+      if (elemento.hdmi) {
+        card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
       ${elemento.cod_rec}
       </h5>
       <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
       <p class="card-text py-2" id="cardModelo">Modelo: ${elemento.modelo}</p>
-      <p class="card-text py-2" id="cardHDMI">HDMI: ${elemento.salidaHDMI()}</p>
-      <p class="card-text py-2" id="cardVGA">VGA: ${elemento.salidaVGA()}</p>
+      <p class="card-text py-2" id="cardHDMI">HDMI: ${elemento.hdmi}</p>
+      <p class="card-text py-2" id="cardVGA">VGA: ${elemento.vga}</p>
       <p class="py-2">El maletín incluye alimentación, cabla VGA y zapatilla multitoma.</p>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="adicional_hdmi" value="agregado">
@@ -121,14 +122,14 @@ function generateCards(array) {
           </div>
         </div>
       </div>`;
-    } else {
-      card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
+      } else {
+        card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
         ${elemento.cod_rec}
       </h5>
       <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
       <p class="card-text py-2" id="cardModelo">Modelo: ${elemento.modelo}</p>
-      <p class="card-text py-2" id="cardHDMI">HDMI: ${elemento.salidaHDMI()}</p>
-      <p class="card-text py-2" id="cardVGA">VGA: ${elemento.salidaVGA()}</p>
+      <p class="card-text py-2" id="cardHDMI">HDMI: ${elemento.hdmi}</p>
+      <p class="card-text py-2" id="cardVGA">VGA: ${elemento.vga}</p>
       <p class="py-2">El maletín incluye alimentación, cabla VGA y zapatilla multitoma.</p>
           
           <div class="mb-5 form-check">
@@ -146,15 +147,20 @@ function generateCards(array) {
           </div>
         </div>
       </div>`;
-    }
+      }
 
-    catalogo.append(card);
+      catalogo.append(card);
+    }
   }
 }
 
-function generateCatalogo(arrayStock) {
+function generateCatalogo() {
+  let arrayStock = JSON.parse(localStorage.getItem("proyectoresStock"));
+  if(arrayStock == null){
+    arrayStock = JSON.parse(localStorage.getItem("proyectores"));
+  }
   if (filtroMarca == "Marca" && filtroCodRec == "Modelo") {
-    if (arrayStock.length == 0) {
+    if (arrayStock == null) {
       catalogo.innerHTML =
         '<p class="text-center my-2">Elemento no encontrado</p>';
     } else {
@@ -197,12 +203,12 @@ function generateCatalogo(arrayStock) {
 window.addEventListener("load", function () {
   generateOptionsMarca();
   generateOptionsCodRec();
-  generateCatalogo(proyectoresStock);
+  generateCatalogo();
   generateBTNaddID();
 });
 
 selectProyectorMarca.onchange = () => {
-  generateCatalogo(proyectoresStock);
+  generateCatalogo();
   if (filtroMarca == "Marca") {
     generateOptionsCodRec();
     generateBTNaddID();
@@ -216,6 +222,6 @@ selectProyectorMarca.onchange = () => {
 };
 
 selectProyectorCodRec.onchange = () => {
-  generateCatalogo(proyectoresStock);
+  generateCatalogo();
   generateBTNaddID();
 };
