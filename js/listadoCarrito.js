@@ -40,6 +40,7 @@ btnVaciarCarrito.addEventListener('click',() =>{
   localStorage.setItem("elementosCarrito", (elementosCarrito));
 
   generateListadoCarrito();
+  location.reload()
 })
 
 window.addEventListener("load", function () {
