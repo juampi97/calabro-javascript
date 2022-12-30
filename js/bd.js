@@ -86,9 +86,6 @@ const notebooks = [
   new Notebook("LENOVO2", "LENOVO", "MOD8", "SN004", 1, 1),
 ];
 
-let adicionalHDMI = 5;
-let adicionalZapatilla = 10;
-
 // Genero arrays para forms Proyectores
 
 let marcaProyectores = [];
@@ -123,7 +120,3 @@ localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
 window.addEventListener("load", function () {
   localStorage.setItem("proyectores", JSON.stringify(proyectores));
 })
-/*
-localStorage.setItem("hdmiBD", adicionalHDMI);
-localStorage.setItem("zapatillaBD", adicionalZapatilla);
-*/

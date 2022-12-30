@@ -42,6 +42,7 @@ function guardarDatos(usuarioDB, storage) {
     name: usuarioDB.name,
     user: usuarioDB.user,
     pass: usuarioDB.pass,
+    tipo: usuarioDB.tipo
   };
 
   storage.setItem("usuario", JSON.stringify(usuario));
@@ -115,3 +116,17 @@ btnLogout.addEventListener("click", () => {
 });
 
 userlogin(recuperarUsuario(sessionStorage));
+
+window.addEventListener("load", function () {
+  let usuario = recuperarUsuario(sessionStorage);
+  if(usuario != null){
+    let btnAdmin = document.getElementById("btnAdmin");
+    console.log('holii');
+    console.log(usuario.tipo);
+    if (usuario.tipo == "ADMINISTRADOR") {
+      btnAdmin.className = "nav-item dropdown";
+    } else {
+      btnAdmin.className = "nav-item dropdown d-none";
+    }
+  }
+});
