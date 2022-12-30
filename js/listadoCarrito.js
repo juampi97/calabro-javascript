@@ -15,7 +15,7 @@ function generateListadoCarrito() {
           Otra data
         </div>
         <div class="d-flex justify-content-center">
-          <button type="button" class="btn btn-danger" id="btnEliminar-${elemento.cod_rec}">X</button>
+          <button type="button" class="btn btn-danger py-1 btnEliminar" id="btnEliminar-${elemento.cod_rec}">x</button>
         </div>
         <span class="badge bg-primary rounded-pill d-none">14</span>
         </li>`;
@@ -32,7 +32,6 @@ btnVaciarCarrito.addEventListener('click',() =>{
   if (arrayProyectores == null) {
     arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
   }
-  console.log(arrayProyectores);
   arrayProyectores.forEach((elemento) => {
     elemento.estado = "DISPONIBLE";
   })
@@ -46,6 +45,40 @@ btnVaciarCarrito.addEventListener('click',() =>{
   location.reload();
 })
 
+// Botones eliminar item del carrito
+
+function generateBTNeliminarID() {
+  let btnEliminar = document.querySelectorAll(".btnEliminar");
+  btnEliminar.forEach((boton) => {
+    boton.addEventListener("click", () => {
+      let elementos = boton.id.split("-");
+      let btnEliminarID = elementos[1];
+      actualizarProyectoresCarrito(btnEliminarID);
+      actulizarBTNCarrito();
+      generateBTNeliminarID();
+      location.reload();
+    });
+  });
+}
+
+function actualizarProyectoresCarrito(itemID) {
+  let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
+  if (arrayProyectores == null) {
+    arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
+  }
+  let instrumento = arrayProyectores.find((el) => el.cod_rec == itemID);
+  position = arrayProyectores.indexOf(instrumento);
+  arrayProyectores[position].estado = "DISPONIBLE";
+  localStorage.setItem("proyectoresStock", JSON.stringify(arrayProyectores));
+  
+  elementosCarrito = cantidadElementosCarrito();
+  localStorage.setItem("elementosCarrito", (elementosCarrito));
+
+}
+
+// Evento load
+
 window.addEventListener("load", function () {
   generateListadoCarrito();
+  generateBTNeliminarID();
 });
