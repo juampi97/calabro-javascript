@@ -76,6 +76,9 @@ btnVaciarCarrito.addEventListener('click',() =>{
   let elementosCarrito = 0;
   localStorage.setItem("elementosCarrito", (elementosCarrito));
 
+  localStorage.removeItem('carritoHDMI');
+  localStorage.removeItem('carritoZAPATILLA');
+
   generateListadoCarrito();
   location.reload();
 })
