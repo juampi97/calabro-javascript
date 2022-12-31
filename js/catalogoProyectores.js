@@ -95,13 +95,24 @@ function generateCards(array) {
       card.id = `${elemento.cod_rec}`;
 
       if (elemento.hdmi) {
+        salidaHDMI = "Disponible";
+      } else {
+        salidaHDMI = "No disponible";
+      }
+      if (elemento.vga) {
+        salidaVGA = "Disponible";
+      } else {
+        salidaVGA = "No disponible";
+      }
+
+      if (elemento.hdmi) {
         card.innerHTML += `<h5 class="card-title text-center py-2" id="cardCodRec">
       ${elemento.cod_rec}
       </h5>
       <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
       <p class="card-text py-2" id="cardModelo">Modelo: ${elemento.modelo}</p>
-      <p class="card-text py-2" id="cardHDMI">HDMI: ${elemento.hdmi}</p>
-      <p class="card-text py-2" id="cardVGA">VGA: ${elemento.vga}</p>
+      <p class="card-text py-2" id="cardHDMI">HDMI: ${salidaHDMI}</p>
+      <p class="card-text py-2" id="cardVGA">VGA: ${salidaVGA}</p>
       <p class="py-2">El maletín incluye alimentación, cabla VGA y zapatilla multitoma.</p>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="adicionalHDMI-${elemento.cod_rec}" value="agregado">
@@ -128,8 +139,8 @@ function generateCards(array) {
       </h5>
       <p class="card-text py-2" id="cardMarca">Marca: ${elemento.marca}</p>
       <p class="card-text py-2" id="cardModelo">Modelo: ${elemento.modelo}</p>
-      <p class="card-text py-2" id="cardHDMI">HDMI: ${elemento.hdmi}</p>
-      <p class="card-text py-2" id="cardVGA">VGA: ${elemento.vga}</p>
+      <p class="card-text py-2" id="cardHDMI">HDMI: ${salidaHDMI}</p>
+      <p class="card-text py-2" id="cardVGA">VGA: ${salidaVGA}</p>
       <p class="py-2">El maletín incluye alimentación, cabla VGA y zapatilla multitoma.</p>
           
           <div class="mb-5 form-check">
