@@ -104,6 +104,7 @@ function generateBTNeliminarID() {
   if (btnEliminarHDMI != null) {
     btnEliminarHDMI.addEventListener("click", () => {
       localStorage.removeItem("carritoHDMI");
+      actulizarBTNCarrito();
       location.reload();
     });
   }
@@ -114,6 +115,7 @@ function generateBTNeliminarID() {
   if (btnEliminarZAPATILLA != null) {
     btnEliminarZAPATILLA.addEventListener("click", () => {
       localStorage.removeItem("carritoZAPATILLA");
+      actulizarBTNCarrito();
       location.reload();
     });
   }

@@ -56,10 +56,9 @@ function actulizarBTNCarrito() {
   let elementosCarrito = localStorage.getItem("elementosCarrito");
   if (elementosCarrito == null) {
     elementosCarrito = 0;
+  }else{
+    elementosCarrito = parseInt(elementosCarrito);
   }
-  elementosCarrito = parseInt(elementosCarrito);
-  localStorage.setItem("elementosCarrito", elementosCarrito);
-
   let carritoHDMI = (localStorage.getItem("carritoHDMI"));
   if (carritoHDMI == null) {
     carritoHDMI = 0;
@@ -74,7 +73,7 @@ function actulizarBTNCarrito() {
   }
   let totalCarrito = elementosCarrito + carritoHDMI + carritoZAPATILLA;
   let itemsCarrito = document.querySelector("#burbujaCarrito");
-  if (elementosCarrito == 0) {
+  if (totalCarrito == 0) {
     itemsCarrito.innerHTML = "";
     itemsCarrito.class = "badge rounded-pill bg-warning d-none";
   } else {
