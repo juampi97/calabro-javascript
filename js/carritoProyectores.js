@@ -1,7 +1,3 @@
-/* let proyectoresStock = proyectores.slice(0);
-let proyectoresReservados = [];
-let carritoActual = [];*/
-
 // Evento boton agregar carrito
 
 function generateBTNaddID() {
@@ -28,13 +24,11 @@ function addHDMIrequired(btnID) {
   let checkboxHDMI = document.getElementById(`adicionalHDMI-${btnID}`);
   if (checkboxHDMI != null) {
     if (checkboxHDMI.checked) {
-      let carritoHDMI = JSON.parse(
-        localStorage.getItem("carritoHDMI")
-      );
+      let carritoHDMI = JSON.parse(localStorage.getItem("carritoHDMI"));
       if (carritoHDMI == null) {
         carritoHDMI = 0;
       }
-      carritoHDMI++;  
+      carritoHDMI++;
       localStorage.setItem("carritoHDMI", carritoHDMI);
     }
   }
@@ -52,26 +46,40 @@ function addZAPATILLArequired(btnID) {
       if (carritoZAPATILLA == null) {
         carritoZAPATILLA = 0;
       }
-      carritoZAPATILLA++;  
+      carritoZAPATILLA++;
       localStorage.setItem("carritoZAPATILLA", carritoZAPATILLA);
     }
-    }
   }
-
+}
 
 function actulizarBTNCarrito() {
   let elementosCarrito = localStorage.getItem("elementosCarrito");
   if (elementosCarrito == null) {
     elementosCarrito = 0;
-    localStorage.setItem("elementosCarrito", elementosCarrito);
   }
+  elementosCarrito = parseInt(elementosCarrito);
+  localStorage.setItem("elementosCarrito", elementosCarrito);
+
+  let carritoHDMI = (localStorage.getItem("carritoHDMI"));
+  if (carritoHDMI == null) {
+    carritoHDMI = 0;
+  }else{
+    carritoHDMI = parseInt(carritoHDMI);
+  }
+  let carritoZAPATILLA = localStorage.getItem("carritoZAPATILLA");
+  if (carritoZAPATILLA == null) {
+    carritoZAPATILLA = 0;
+  }else{
+    carritoZAPATILLA = parseInt(carritoZAPATILLA);
+  }
+  let totalCarrito = elementosCarrito + carritoHDMI + carritoZAPATILLA;
   let itemsCarrito = document.querySelector("#burbujaCarrito");
   if (elementosCarrito == 0) {
     itemsCarrito.innerHTML = "";
     itemsCarrito.class = "badge rounded-pill bg-warning d-none";
   } else {
     itemsCarrito.class = "badge rounded-pill bg-warning";
-    itemsCarrito.innerHTML = `<p>${elementosCarrito}</p>`;
+    itemsCarrito.innerHTML = `<p>${totalCarrito}</p>`;
   }
 }
 
