@@ -15,6 +15,7 @@
     <script defer src="./js/bd.js"></script>
     <script defer src="./js/login.js"></script>
     <script defer src="./js/carritoProyectores.js"></script>
+    <script defer src="./js/agregarProyector.js"></script>
 
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -111,10 +112,7 @@
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="#">Pedidos</a></li>
                           <li>
-                            <a class="dropdown-item" href="./agregar.html">Agregar</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Usuarios</a>
+                            <a class="dropdown-item" href="./agregarproyector.html">Agregar proyector</a>
                           </li>
                         </ul>
                       </li>
@@ -212,7 +210,7 @@
                   type="text"
                   name="name"
                   class="form-control"
-                  id="InputName"
+                  id="Input-cod_rec"
                   aria-describedby="name"
                 />
               <div class="mb-3">
@@ -221,7 +219,7 @@
                   type="text"
                   name="name"
                   class="form-control"
-                  id="InputName"
+                  id="Input-marca"
                   aria-describedby="name"
                 />
               <div class="mb-3">
@@ -230,7 +228,7 @@
                   type="text"
                   name="name"
                   class="form-control"
-                  id="InputName"
+                  id="Input-modelo"
                   aria-describedby="name"
                 />
               <div class="mb-3">
@@ -239,31 +237,23 @@
                   type="text"
                   name="name"
                   class="form-control"
-                  id="InputName"
+                  id="Input-sn"
                   aria-describedby="name"
                 />
-              <div class="mb-3">
-                <label for="name" class="form-label">Salida HDMI</label>
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control"
-                  id="InputName"
-                  aria-describedby="name"
-                  placeholder="'1' -> Disponible / '0' -> No disponible"
-                />
-              <div class="mb-3">
-                <label for="name" class="form-label">Salida VGA</label>
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control"
-                  id="InputName"
-                  aria-describedby="name"
-                  placeholder="'1' -> Disponible / '0' -> No disponible"
-                />
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkbox-hdmi">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Salida HDMI
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="checkbox-vga">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Salida VGA
+                  </label>
+                </div>
               </div>
-              <button type="submit" class="btn btn-success mb-1">Agregar</button>
+              <button type="submit" class="btn btn-success mb-1" id="btnAdd">Agregar</button>
               <button type="reset" class="btn btn-success mb-1">
                 Limpiar formulario
               </button>
