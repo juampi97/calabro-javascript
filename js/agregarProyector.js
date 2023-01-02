@@ -7,7 +7,6 @@ let checkbox_vga = document.getElementById("checkbox-vga");
 let btnAdd = document.getElementById("btnAdd");
 
 btnAdd.addEventListener("click", (e) => {
-  e.preventDefault();
   if (
     !Input_cod_rec.value ||
     !Input_marca.value ||

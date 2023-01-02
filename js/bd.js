@@ -116,7 +116,12 @@ notebooks.forEach((elemento) => {
 
 // Agrego BD al storage
 
-localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
 window.addEventListener("load", function () {
+  let arrayUsuarios = JSON.parse(
+    localStorage.getItem("usuariosBD")
+  );
+  if(arrayUsuarios == null){
+    localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
+  }
   localStorage.setItem("proyectores", JSON.stringify(proyectores));
 })

@@ -92,7 +92,10 @@ btnLogin.addEventListener("click", (e) => {
   if (!userLogin.value || !passLogin.value) {
     alert("Todos los campos son requeridos");
   } else {
-    let data = validarUsuario(usuarios, userLogin.value, passLogin.value);
+    let arrayUsuarios = JSON.parse(
+      localStorage.getItem("usuariosBD")
+    );
+    let data = validarUsuario(arrayUsuarios, userLogin.value, passLogin.value);
     if (!data) {
       alert(`Usuario y/o contraseña erróneos`);
     } else {
