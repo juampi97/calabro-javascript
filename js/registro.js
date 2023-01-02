@@ -5,7 +5,6 @@ let input_pass2 = document.getElementById("Input-pass2");
 let btnAdd = document.getElementById("btnAdd");
 
 btnAdd.addEventListener("click", (e) => {
-  e.preventDefault();
   if (
     !input_name.value ||
     !input_user.value ||
