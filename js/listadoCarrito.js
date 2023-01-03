@@ -59,9 +59,22 @@ function generateAddZAPATILLA() {
   }
 }
 
+function mostrarBtnVaciarCarrito(){
+  let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
+if (arrayProyectores == null) {
+  arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
+}
+if(arrayProyectores.some((elemento) => elemento.estado == "CARRITO")){
+  btnVaciarCarrito.classList = "btn btn-danger"
+}else{
+  btnVaciarCarrito.classList = "btn btn-danger d-none"
+}
+}
+
 // Boton vaciar carrito
 
 let btnVaciarCarrito = document.getElementById("btnVaciarCarrito");
+
 btnVaciarCarrito.addEventListener("click", () => {
   let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
   if (arrayProyectores == null) {
@@ -87,6 +100,7 @@ btnVaciarCarrito.addEventListener("click", () => {
 
 function generateBTNeliminarID() {
   let btnEliminar = document.querySelectorAll(".btnEliminar");
+
   btnEliminar.forEach((boton) => {
     boton.addEventListener("click", () => {
       let elementos = boton.id.split("-");
@@ -135,10 +149,12 @@ function actualizarProyectoresCarrito(itemID) {
   elementosCarrito = cantidadElementosCarrito();
   localStorage.setItem("elementosCarrito", elementosCarrito);
 }
+mostrarBtnVaciarCarrito();
 
 // Evento load
 
 window.addEventListener("load", function () {
+  mostrarBtnVaciarCarrito()
   generateListadoCarrito();
   generateBTNeliminarID();
 });
