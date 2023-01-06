@@ -7,17 +7,23 @@ function generateBTNaddID() {
       let elementos = boton.id.split("-");
       let btnAddID = elementos[1];
 
+      boton.className = "btn btn-succes btnAdd d-none"
+
       addHDMIrequired(btnAddID);
       addZAPATILLArequired(btnAddID);
 
       actualizarProyectoresStock(btnAddID);
 
       actulizarBTNCarrito();
-
       generateCatalogo(proyectoresStock);
+      
       generateBTNaddID();
     });
   });
+}
+
+function deshabilitarBTN(id){
+
 }
 
 function addHDMIrequired(btnID) {
