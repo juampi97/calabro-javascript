@@ -22,8 +22,10 @@ btnAdd.addEventListener("click", (e) => {
         input_pass.value,
         "docente"
       );
+      console.log(new_user);
       let arrayUsuarios = JSON.parse(localStorage.getItem("usuariosBD"));
       arrayUsuarios.push(new_user);
+      console.log(arrayUsuarios);
       localStorage.setItem("usuariosBD", JSON.stringify(arrayUsuarios));
       alert("Registro exitoso");
     }
