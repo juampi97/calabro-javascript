@@ -7,13 +7,14 @@ let checkbox_vga = document.getElementById("checkbox-vga");
 let btnAdd = document.getElementById("btnAdd");
 
 btnAdd.addEventListener("click", (e) => {
+  e.preventDefault();
   if (
     !Input_cod_rec.value ||
     !Input_marca.value ||
     !Input_modelo.value ||
     !Input_sn.value
   ) {
-    alert("Todos los campos son requeridos");
+    ("Todos los campos son requeridos");
   } else {
     let hdmi = 0;
     let vga = 0;
@@ -53,6 +54,10 @@ btnAdd.addEventListener("click", (e) => {
         localStorage.setItem("proyectores", JSON.stringify(arrayProyectores));
         localStorage.setItem("proyectoresStock", JSON.stringify(arrayProyectoresStock));
     }
-    alert("Item agregado correctamente");
+    Swal.fire(
+      '',
+      'Item agregado correctamente',
+      'success'
+    );
   }
 });

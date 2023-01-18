@@ -90,15 +90,23 @@ function recuperarUsuario(storage) {
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
   if (!userLogin.value || !passLogin.value) {
-    alert("Todos los campos son requeridos");
+    Swal.fire(
+      '',
+      'Todos los campos son requeridos',
+      'warning'
+    )
   } else {
     let arrayUsuarios = JSON.parse(
       localStorage.getItem("usuariosBD")
     );
     let data = validarUsuario(arrayUsuarios, userLogin.value, passLogin.value);
     if (!data) {
-      alert(`Usuario y/o contraseña erróneos`);
-    } else {
+      Swal.fire(
+        '',
+        'Usuario y/o contraseña erróneos',
+        'error'
+      )
+      } else {
       guardarDatos(data, sessionStorage);
       modal.hide();
       usuarioLogeado = true;
