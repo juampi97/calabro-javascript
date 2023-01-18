@@ -1,0 +1,6 @@
+[
+    {"cod_rec":"VIEW1","marca":"VIEWSONIC","modelo":"MOD1","sn":"SN0001","vga":1,"hdmi":0,"estado":"DISPONIBLE"},
+    {"cod_rec":"VIEW2","marca":"VIEWSONIC","modelo":"MOD2","sn":"SN0002","vga":0,"hdmi":1,"estado":"DISPONIBLE"},
+    {"cod_rec":"BENQ1","marca":"BENQ","modelo":"MOD3","sn":"SN0001","vga":1,"hdmi":1,"estado":"DISPONIBLE"},
+    {"cod_rec":"BENQ2","marca":"BENQ","modelo":"MOD4","sn":"SN0004","vga":1,"hdmi":0,"estado":"DISPONIBLE"}
+]
