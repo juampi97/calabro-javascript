@@ -38,8 +38,10 @@ const pedirProyectores = async () => {
     );
     proyectores.push(newProyector);
   });
+
+  localStorage.setItem("proyectores", JSON.stringify(proyectores));
+
 };
-pedirProyectores();
 
 //Simulo BD usuarios
 
@@ -53,9 +55,12 @@ const pedirUsuarios = async () => {
     usuarios.push(newUsuario);
   });
 
-  //Subir al localST
+  let arrayUsuarios = JSON.parse(localStorage.getItem("usuariosBD"));
+  if (arrayUsuarios == null) {
+    localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
+  }
+
 };
-pedirUsuarios();
 
 let proyectoresStock = proyectores.slice(0);
 
@@ -73,12 +78,9 @@ proyectoresStock.forEach((elemento) => {
   codrecProyectores.push(elemento.cod_rec);
 });
 
-// // Agrego BD al storage
+// Agrego BD al storage
 
 window.addEventListener("load", function () {
-  let arrayUsuarios = JSON.parse(localStorage.getItem("usuariosBD"));
-  if (arrayUsuarios == null) {
-    localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
-  }
-  localStorage.setItem("proyectores", JSON.stringify(proyectores));
+  pedirUsuarios();
+  pedirProyectores();
 });
