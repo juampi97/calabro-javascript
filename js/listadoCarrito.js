@@ -59,19 +59,23 @@ function generateAddZAPATILLA() {
   }
 }
 
-function mostrarBtnVaciarCarrito(){
+// Mostrar botones acciones del carrito
+
+function mostrarBtnCarrito() {
   let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
-if (arrayProyectores == null) {
-  arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
-}
-if(arrayProyectores.some((elemento) => elemento.estado == "CARRITO")){
-  btnVaciarCarrito.classList = "btn btn-danger"
-}else{
-  btnVaciarCarrito.classList = "btn btn-danger d-none"
-}
+  if (arrayProyectores == null) {
+    arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
+  }
+  if (arrayProyectores.some((elemento) => elemento.estado == "CARRITO")) {
+    btnVaciarCarrito.classList = "btn btn-danger mx-1";
+    btnReservarCarrito.classList = "btn btn-success mx-1";
+  } else {
+    btnVaciarCarrito.classList = "btn btn-danger mx-1 d-none";
+    btnReservarCarrito.classList = "btn btn-success mx-1 d-none";
+  }
 }
 
-// Boton vaciar carrito
+// Accion boton vaciar carrito
 
 let btnVaciarCarrito = document.getElementById("btnVaciarCarrito");
 
@@ -94,6 +98,14 @@ btnVaciarCarrito.addEventListener("click", () => {
 
   generateListadoCarrito();
   location.reload();
+});
+
+//Accion boton reservar carrito
+
+let btnReservarCarrito = document.getElementById("btnReservarCarrito");
+
+btnReservarCarrito.addEventListener("click", () => {
+
 });
 
 // Botones eliminar item del carrito
@@ -149,12 +161,12 @@ function actualizarProyectoresCarrito(itemID) {
   elementosCarrito = cantidadElementosCarrito();
   localStorage.setItem("elementosCarrito", elementosCarrito);
 }
-mostrarBtnVaciarCarrito();
+mostrarBtnCarrito();
 
 // Evento load
 
 window.addEventListener("load", function () {
-  mostrarBtnVaciarCarrito()
+  mostrarBtnCarrito();
   generateListadoCarrito();
   generateBTNeliminarID();
 });

@@ -236,16 +236,28 @@
           <div class="col-11 col-md-6 text-center">
             <ol id="listadoCarrito" class="list-group list-group-numbered"></ol>
           </div>
-          <div class="row d-flex flex-row justify-content-center pt-3">
-            <div class="d-flex justify-content-center">
+          <div class="row d-flex flex-row justify-content-center">
+            <div class="d-flex justify-content-center my-4">
               <button
                 type="button"
-                class="btn btn-danger"
+                class="btn btn-danger mx-1"
                 id="btnVaciarCarrito"
               >
                 Vaciar carrito
               </button>
+              <button
+                type="button"
+                class="btn btn-success mx-1"
+                id="btnReservarCarrito"
+              >
+                Reservar
+              </button>
             </div>
+          </div>
+        </div>
+        <div class="row d-flex flex-row justify-content-center">
+          <div class="col-9 alert alert-danger text-center" id="alertUserNoRegistrado" role="alert">
+            Para concretar la reserva debes iniciar sesión.
           </div>
         </div>
       </div>

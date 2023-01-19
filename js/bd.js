@@ -40,7 +40,6 @@ const pedirProyectores = async () => {
   });
 
   localStorage.setItem("proyectores", JSON.stringify(proyectores));
-
 };
 
 //Simulo BD usuarios
@@ -59,13 +58,12 @@ const pedirUsuarios = async () => {
   if (arrayUsuarios == null) {
     localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
   }
-
 };
-
-let proyectoresStock = proyectores.slice(0);
 
 // Genero arrays para forms Proyectores
 
+let proyectoresStock = proyectores.slice(0);
+  
 let marcaProyectores = [];
 let codrecProyectores = [];
 
@@ -77,6 +75,11 @@ marcaProyectores = [...new Set(marcaProyectores)];
 proyectoresStock.forEach((elemento) => {
   codrecProyectores.push(elemento.cod_rec);
 });
+
+console.log(proyectoresStock);
+console.log(marcaProyectores);
+console.log(codrecProyectores);
+
 
 // Agrego BD al storage
 
