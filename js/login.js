@@ -42,7 +42,7 @@ function guardarDatos(usuarioDB, storage) {
     name: usuarioDB.name,
     user: usuarioDB.user,
     pass: usuarioDB.pass,
-    tipo: usuarioDB.tipo
+    tipo: usuarioDB.tipo,
   };
 
   storage.setItem("usuario", JSON.stringify(usuario));
@@ -68,16 +68,28 @@ function funcionesAdmin(usuario) {
   }
 }
 
-// Mostrar alert permiso de reserva en carrito
+// Mostrar alert permiso de reserva en carrito segun login
 
-function displayAlertPermisoReserva(){
-  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
-  alertUserLogeado.classList.toggle("d-none")
+function displayAlertPermisoReserva() {
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado");
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center";
 }
 
-function displayNoneAlertPermisoReserva(){
-  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
-  alertUserLogeado.classList.toggle("d-none")
+function displayNoneAlertPermisoReserva() {
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado");
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center d-none";
+}
+
+// Habilitar boton reserva segun login
+
+function enablebtnReserva() {
+  let btnReservarCarrito = document.getElementById("btnReservarCarrito");
+  btnReservarCarrito.classList = "btn btn-success mx-1";
+}
+
+function disablebtnReserva() {
+  let btnReservarCarrito = document.getElementById("btnReservarCarrito");
+  btnReservarCarrito.classList = "btn btn-success mx-1 d-none";
 }
 
 // Funciones al hacer login
@@ -89,7 +101,8 @@ function userlogin(usuario) {
     saludar(usuario);
     presentarInfo(toggles, "d-none");
     funcionesAdmin(usuario);
-    displayAlertPermisoReserva();
+    displayNoneAlertPermisoReserva();
+    enablebtnReserva();
   }
 }
 
@@ -105,23 +118,13 @@ function recuperarUsuario(storage) {
 btnLogin.addEventListener("click", (e) => {
   e.preventDefault();
   if (!userLogin.value || !passLogin.value) {
-    Swal.fire(
-      '',
-      'Todos los campos son requeridos',
-      'warning'
-    )
+    Swal.fire("", "Todos los campos son requeridos", "warning");
   } else {
-    let arrayUsuarios = JSON.parse(
-      localStorage.getItem("usuariosBD")
-    );
+    let arrayUsuarios = JSON.parse(localStorage.getItem("usuariosBD"));
     let data = validarUsuario(arrayUsuarios, userLogin.value, passLogin.value);
     if (!data) {
-      Swal.fire(
-        '',
-        'Usuario y/o contraseña erróneos',
-        'error'
-      )
-      } else {
+      Swal.fire("", "Usuario y/o contraseña erróneos", "error");
+    } else {
       guardarDatos(data, sessionStorage);
       modal.hide();
       usuarioLogeado = true;
@@ -139,14 +142,15 @@ btnLogout.addEventListener("click", () => {
   btnAdmin.className = "nav-item dropdown d-none";
   usuarioLogeado = false;
   sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
-  displayNoneAlertPermisoReserva();
+  displayAlertPermisoReserva();
+  disablebtnReserva();
 });
 
 userlogin(recuperarUsuario(sessionStorage));
 
 window.addEventListener("load", function () {
   let usuario = recuperarUsuario(sessionStorage);
-  if(usuario != null){
+  if (usuario != null) {
     let btnAdmin = document.getElementById("btnAdmin");
     if (usuario.tipo == "ADMINISTRADOR") {
       btnAdmin.className = "nav-item dropdown";
