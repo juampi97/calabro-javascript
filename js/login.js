@@ -68,6 +68,20 @@ function funcionesAdmin(usuario) {
   }
 }
 
+// Mostrar alert permiso de reserva en carrito
+
+function displayAlertPermisoReserva(){
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
+  alertUserLogeado.classList.toggle("d-none")
+}
+
+function displayNoneAlertPermisoReserva(){
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
+  alertUserLogeado.classList.toggle("d-none")
+}
+
+// Funciones al hacer login
+
 function userlogin(usuario) {
   if (usuario) {
     usuarioLogeado = true;
@@ -75,6 +89,7 @@ function userlogin(usuario) {
     saludar(usuario);
     presentarInfo(toggles, "d-none");
     funcionesAdmin(usuario);
+    displayAlertPermisoReserva();
   }
 }
 
@@ -124,6 +139,7 @@ btnLogout.addEventListener("click", () => {
   btnAdmin.className = "nav-item dropdown d-none";
   usuarioLogeado = false;
   sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
+  displayNoneAlertPermisoReserva();
 });
 
 userlogin(recuperarUsuario(sessionStorage));
