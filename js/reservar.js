@@ -1,6 +1,22 @@
 formDia = document.getElementById("selectDateReserva");
 formHorario = document.getElementById("selectHorarioReserva");
 
+function today() {
+  let date = new Date();
+
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let year = date.getFullYear();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  hoy = `${year}-${month}-${day}`
+  return hoy;
+}
+
+formDia.value = today();
+formDia.min = today();
+
 btnReservarCarrito.addEventListener("click", () => {
   let usuario = recuperarUsuario(sessionStorage);
 
