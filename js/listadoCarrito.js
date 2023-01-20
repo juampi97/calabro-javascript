@@ -65,6 +65,8 @@ function mostrarBtnCarrito() {
 
   let alertcarritoVacio = document.getElementById("alertcarritoVacio")
 
+  let formSelectDateReserva = document.getElementById("formSelectDateReserva")
+
   let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
   if (arrayProyectores == null) {
     arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
@@ -72,11 +74,13 @@ function mostrarBtnCarrito() {
   if (arrayProyectores.some((elemento) => elemento.estado == "CARRITO")) {
     btnVaciarCarrito.classList = "btn btn-danger mx-1";
     btnReservarCarrito.classList = "btn btn-success mx-1 disabled";
-    alertcarritoVacio.classList = "col-9 alert alert-primary text-center d-none"
+    alertcarritoVacio.classList = "col-9 alert alert-primary text-center d-none";
+    formSelectDateReserva.classList = "row d-flex justify-content-center";
   } else {
     btnVaciarCarrito.classList = "btn btn-danger mx-1 d-none";
     btnReservarCarrito.classList = "btn btn-success mx-1 d-none";
     alertcarritoVacio.classList = "col-9 alert alert-primary text-center"
+    formSelectDateReserva.classList = "row d-flex justify-content-center d-none";
   }
 }
 
