@@ -155,8 +155,8 @@ function displayAlertLog(){
 }
 
 function displaynoneAlertLog(){
-  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
-  alertUserLogeado.classList = "col-9 alert alert-danger text-center d-none";
+  let alertUserNoRegistrado = document.getElementById("alertUserNoRegistrado")
+  alertUserNoRegistrado.classList = "col-9 alert alert-danger text-center d-none";
 }
 
 userlogin(recuperarUsuario(sessionStorage));

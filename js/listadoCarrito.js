@@ -62,6 +62,9 @@ function generateAddZAPATILLA() {
 // Mostrar botones acciones del carrito
 
 function mostrarBtnCarrito() {
+
+  let alertcarritoVacio = document.getElementById("alertcarritoVacio")
+
   let arrayProyectores = JSON.parse(localStorage.getItem("proyectoresStock"));
   if (arrayProyectores == null) {
     arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
@@ -69,9 +72,11 @@ function mostrarBtnCarrito() {
   if (arrayProyectores.some((elemento) => elemento.estado == "CARRITO")) {
     btnVaciarCarrito.classList = "btn btn-danger mx-1";
     btnReservarCarrito.classList = "btn btn-success mx-1 disabled";
+    alertcarritoVacio.classList = "col-9 alert alert-primary text-center d-none"
   } else {
     btnVaciarCarrito.classList = "btn btn-danger mx-1 d-none";
     btnReservarCarrito.classList = "btn btn-success mx-1 d-none";
+    alertcarritoVacio.classList = "col-9 alert alert-primary text-center"
   }
 }
 
