@@ -83,13 +83,14 @@ function displayNoneAlertPermisoReserva() {
 // Habilitar boton reserva segun login
 
 function enablebtnReserva() {
+
   let btnReservarCarrito = document.getElementById("btnReservarCarrito");
-  btnReservarCarrito.classList = "btn btn-success mx-1";
+  btnReservarCarrito.classList.remove("disabled");
 }
 
 function disablebtnReserva() {
   let btnReservarCarrito = document.getElementById("btnReservarCarrito");
-  btnReservarCarrito.classList = "btn btn-success mx-1 d-none";
+  btnReservarCarrito.classList.add("disabled");
 }
 
 // Funciones al hacer login
@@ -146,16 +147,33 @@ btnLogout.addEventListener("click", () => {
   disablebtnReserva();
 });
 
+// Mostrar/no alert log 
+
+function displayAlertLog(){
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center";
+}
+
+function displaynoneAlertLog(){
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center d-none";
+}
+
 userlogin(recuperarUsuario(sessionStorage));
 
 window.addEventListener("load", function () {
   let usuario = recuperarUsuario(sessionStorage);
   if (usuario != null) {
+    enablebtnReserva();
+    displaynoneAlertLog();
     let btnAdmin = document.getElementById("btnAdmin");
     if (usuario.tipo == "ADMINISTRADOR") {
       btnAdmin.className = "nav-item dropdown";
     } else {
       btnAdmin.className = "nav-item dropdown d-none";
     }
+  }else{
+    disablebtnReserva();
+    displayAlertLog();
   }
 });

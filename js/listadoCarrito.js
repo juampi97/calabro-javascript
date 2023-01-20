@@ -68,18 +68,15 @@ function mostrarBtnCarrito() {
   }
   if (arrayProyectores.some((elemento) => elemento.estado == "CARRITO")) {
     btnVaciarCarrito.classList = "btn btn-danger mx-1";
-    btnReservarCarrito.classList = "btn btn-success mx-1";
-    alertUserLogeado.classList = "col-9 alert alert-danger text-center"
+    btnReservarCarrito.classList = "btn btn-success mx-1 disabled";
   } else {
     btnVaciarCarrito.classList = "btn btn-danger mx-1 d-none";
     btnReservarCarrito.classList = "btn btn-success mx-1 d-none";
-    alertUserLogeado.classList = "col-9 alert alert-danger text-center d-none"
   }
 }
 
 // Accion boton vaciar carrito
 
-let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
 let btnVaciarCarrito = document.getElementById("btnVaciarCarrito");
 
 btnVaciarCarrito.addEventListener("click", () => {
