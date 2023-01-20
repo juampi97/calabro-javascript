@@ -1,13 +1,16 @@
-formDia = document.getElementById("formSelectDateReserva");
+formDia = document.getElementById("selectDateReserva");
 formHorario = document.getElementById("selectHorarioReserva");
 
 let usuario = recuperarUsuario(sessionStorage);
 
 btnReservarCarrito.addEventListener('click',() => {
-dia = formDia.value
+
+day = formDia.value
+vectorDay = day.split('-')
+dia = `${vectorDay[2]}/${vectorDay[1]}/${vectorDay[0]}` 
 horario = formHorario.value
 
-if(horario == "null"){
+if(horario == "null" || day == "" ){
     Swal.fire(
         '',
         'Seleccione la fecha en la que desea realizar la reserva',
