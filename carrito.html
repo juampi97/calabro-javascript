@@ -231,7 +231,33 @@
         </div>
       </div>
       <!-- Contenido principal -->
+      
       <div class="container-fluid main_principal py-4">
+         <!-- Seleccion de fecha que se desea hacer la reserva -->
+         <div class="row d-flex justify-content-center" id="formSelectDateReserva">
+          <div
+            class="col-10 col-md-3 col-lg-2 d-flex justify-content-center py-2 py-lg-3"
+          >
+            <input
+              type="date"
+              value="2022-09-29"
+              min="2022-09-29"
+              max="2022-10-7"
+              step="1"
+            />
+          </div>
+          <div
+            class="col-10 col-md-6 col-lg-4 d-flex justify-content-center py-2 py-lg-3"
+          >
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Seleccione un horario</option>
+              <option value="1">8:00 a 12:00</option>
+              <option value="2">14:00 a 18:00</option>
+              <option value="3">19:00 a 23:00</option>
+            </select>
+          </div>
+        </div>  
+        <!-- Carrito -->
         <div class="row d-flex flex-row justify-content-center pt-3">
           <div class="col-11 col-md-6 text-center">
             <ol id="listadoCarrito" class="list-group list-group-numbered"></ol>
@@ -244,6 +270,7 @@
               Para continuar con la reserva debes iniciar sesión.
             </div>
           </div>
+          <!-- Botones reserva -->
           <div class="row d-flex flex-row justify-content-center">
             <div class="d-flex justify-content-center">
               <button
