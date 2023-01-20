@@ -16,6 +16,7 @@
     <script defer src="./js/listadoCarrito.js"></script>
     <script defer src="./js/login.js"></script>
     <script defer src="./js/carritoProyectores.js"></script>
+    <script defer src="./js/reservar.js"></script>
     <!-- Sweetakert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- JavaScript Bundle with Popper -->
@@ -240,9 +241,6 @@
           >
             <input
               type="date"
-              value="2022-09-29"
-              min="2022-09-29"
-              max="2022-10-7"
               step="1"
               id="dateReserva"
             />
@@ -250,7 +248,7 @@
           <div
             class="col-10 col-md-6 col-lg-4 d-flex justify-content-center py-2 py-lg-3"
           >
-            <select class="form-select" id="horarioReserva" aria-label="Default select example">
+            <select class="form-select" id="selectHorarioReserva" aria-label="Default select example">
               <option value="null" selected>Seleccione un horario</option>
               <option value="8:00 a 12:00">8:00 a 12:00</option>
               <option value="14:00 a 18:00">14:00 a 18:00</option>
