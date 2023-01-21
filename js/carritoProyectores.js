@@ -22,10 +22,6 @@ function generateBTNaddID() {
   });
 }
 
-function deshabilitarBTN(id){
-
-}
-
 function addHDMIrequired(btnID) {
   let checkboxHDMI = document.getElementById(`adicionalHDMI-${btnID}`);
   if (checkboxHDMI != null) {

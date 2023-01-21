@@ -14,7 +14,7 @@ btnAdd.addEventListener("click", (e) => {
     !Input_modelo.value ||
     !Input_sn.value
   ) {
-    ("Todos los campos son requeridos");
+    Swal.fire("", "Todos los campos son requeridos", "warning");
   } else {
     let hdmi = 0;
     let vga = 0;
@@ -38,26 +38,24 @@ btnAdd.addEventListener("click", (e) => {
       localStorage.getItem("proyectoresStock")
     );
     if (arrayProyectoresStock == null) {
-      let arrayProyectores = JSON.parse(
-        localStorage.getItem("proyectores")
-      );
+      let arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
       arrayProyectores.push(new_proyector);
-      arrayProyectoresStock = arrayProyectores.slice(0) 
+      arrayProyectoresStock = arrayProyectores.slice(0);
       localStorage.setItem("proyectores", JSON.stringify(arrayProyectores));
-      localStorage.setItem("proyectoresStock", JSON.stringify(arrayProyectoresStock));
+      localStorage.setItem(
+        "proyectoresStock",
+        JSON.stringify(arrayProyectoresStock)
+      );
     } else {
-        let arrayProyectores = JSON.parse(
-            localStorage.getItem("proyectores")
-          );
-        arrayProyectores.push(new_proyector)
-        arrayProyectoresStock.push(new_proyector)
-        localStorage.setItem("proyectores", JSON.stringify(arrayProyectores));
-        localStorage.setItem("proyectoresStock", JSON.stringify(arrayProyectoresStock));
+      let arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
+      arrayProyectores.push(new_proyector);
+      arrayProyectoresStock.push(new_proyector);
+      localStorage.setItem("proyectores", JSON.stringify(arrayProyectores));
+      localStorage.setItem(
+        "proyectoresStock",
+        JSON.stringify(arrayProyectoresStock)
+      );
     }
-    Swal.fire(
-      '',
-      'Item agregado correctamente',
-      'success'
-    );
+    Swal.fire("", "Item agregado correctamente", "success");
   }
 });

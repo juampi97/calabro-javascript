@@ -16,7 +16,7 @@ let btnAdmin = document.getElementById("btnAdmin");
 // Borrar datos storage
 
 function borrarDatos() {
-  // localStorage.clear();
+  
   sessionStorage.clear();
 }
 
@@ -67,7 +67,6 @@ function funcionesAdmin(usuario) {
     btnAdmin.className = "nav-item dropdown d-none";
   }
 }
-
 
 // Funciones al hacer login
 

@@ -83,7 +83,6 @@ function displayNoneAlertPermisoReserva() {
 // Habilitar boton reserva segun login
 
 function enablebtnReserva() {
-
   let btnReservarCarrito = document.getElementById("btnReservarCarrito");
   btnReservarCarrito.classList.remove("disabled");
 }
@@ -147,16 +146,17 @@ btnLogout.addEventListener("click", () => {
   disablebtnReserva();
 });
 
-// Mostrar/no alert log 
+// Mostrar/no alert log
 
-function displayAlertLog(){
-  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
+function displayAlertLog() {
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado");
   alertUserLogeado.classList = "col-9 alert alert-danger text-center";
 }
 
-function displaynoneAlertLog(){
-  let alertUserNoRegistrado = document.getElementById("alertUserNoRegistrado")
-  alertUserNoRegistrado.classList = "col-9 alert alert-danger text-center d-none";
+function displaynoneAlertLog() {
+  let alertUserNoRegistrado = document.getElementById("alertUserNoRegistrado");
+  alertUserNoRegistrado.classList =
+    "col-9 alert alert-danger text-center d-none";
 }
 
 userlogin(recuperarUsuario(sessionStorage));
@@ -172,7 +172,7 @@ window.addEventListener("load", function () {
     } else {
       btnAdmin.className = "nav-item dropdown d-none";
     }
-  }else{
+  } else {
     disablebtnReserva();
     displayAlertLog();
   }
