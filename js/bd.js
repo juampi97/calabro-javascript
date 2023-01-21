@@ -26,7 +26,7 @@ let marcaProyectores = [];
 let codrecProyectores = [];
 
 const pedirProyectores = async () => {
-  const resp = await fetch("/proyectores.json");
+  const resp = await fetch("./proyectores.json");
   const data = await resp.json();
   data.forEach((prod) => {
     let newProyector = new Proyector(
@@ -53,7 +53,7 @@ const pedirProyectores = async () => {
 let usuarios = [];
 
 const pedirUsuarios = async () => {
-  const resp = await fetch("/usuarios.json");
+  const resp = await fetch("./usuarios.json");
   const data = await resp.json();
   data.forEach((user) => {
     let newUsuario = new Usuario(user.name, user.user, user.pass, user.tipo);
