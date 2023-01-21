@@ -36,7 +36,7 @@ btnAdd.addEventListener("click", (e) => {
 
     let arrayProyectoresStock = JSON.parse(
       localStorage.getItem("proyectoresStock")
-    );
+      );
     if (arrayProyectoresStock == null) {
       let arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
       arrayProyectores.push(new_proyector);
@@ -50,6 +50,8 @@ btnAdd.addEventListener("click", (e) => {
       let arrayProyectores = JSON.parse(localStorage.getItem("proyectores"));
       arrayProyectores.push(new_proyector);
       arrayProyectoresStock.push(new_proyector);
+      
+      arrayProyectoresStock = [...new Set(arrayProyectoresStock)];
       localStorage.setItem("proyectores", JSON.stringify(arrayProyectores));
       localStorage.setItem(
         "proyectoresStock",
