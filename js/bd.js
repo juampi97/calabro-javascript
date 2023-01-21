@@ -110,4 +110,6 @@ btnReset.addEventListener("click", () => {
 // Funciones al cargar pagina
 
 window.addEventListener("load", function () {
+  pedirUsuarios();
+  pedirProyectores();
 });
