@@ -34,7 +34,6 @@ btnAdd.addEventListener("click", (e) => {
       console.log(new_user);
       let arrayUsuarios = JSON.parse(localStorage.getItem("usuariosBD"));
       arrayUsuarios.push(new_user);
-      console.log(arrayUsuarios);
       localStorage.setItem("usuariosBD", JSON.stringify(arrayUsuarios));
       Swal.fire(
         '',

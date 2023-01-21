@@ -15,7 +15,7 @@ function generateBTNaddID() {
       actualizarProyectoresStock(btnAddID);
 
       actulizarBTNCarrito();
-      generateCatalogo(proyectoresStock);
+      generateCatalogo(proyectores);
       
       generateBTNaddID();
     });
