@@ -22,6 +22,8 @@ class Usuario {
 //Simulo BD proyectores
 
 let proyectores = [];
+let marcaProyectores = [];
+let codrecProyectores = [];
 
 const pedirProyectores = async () => {
   const resp = await fetch("/proyectores.json");
@@ -37,9 +39,13 @@ const pedirProyectores = async () => {
       prod.estado
     );
     proyectores.push(newProyector);
+    marcaProyectores.push(newProyector.marca)
+    codrecProyectores.push(newProyector.cod_rec)
   });
 
   localStorage.setItem("proyectores", JSON.stringify(proyectores));
+  marcaProyectores = [...new Set(marcaProyectores)];
+  generateOptionsMarca()
 };
 
 //Simulo BD usuarios
@@ -60,28 +66,44 @@ const pedirUsuarios = async () => {
   }
 };
 
-// Genero arrays para forms Proyectores
+// Generar opciones forms
 
-let proyectoresStock = proyectores.slice(0);
+let selectProyectorMarca = document.getElementById("selectProyectoresMarca");
+
+function generateOptionsMarca() {
+  selectProyectorMarca.innerHTML = "<option selected>Marca</option>";
+  marcaProyectores.forEach((elemento) => {
+    let optionMarca = document.createElement("option");
+    optionMarca.innerHTML += elemento;
+    optionMarca.value = elemento;
+    selectProyectorMarca.append(optionMarca);
+  });
+}
+
+let selectProyectorCodRec = document.getElementById("selectProyectoresCodRec");
+
+// Eventos para filtrado
+
+let btnReset = document.getElementById("btnReset");
+
+let filtroMarca = "Marca";
+
+selectProyectorMarca.addEventListener("input", () => {
+  filtroMarca = selectProyectorMarca.value;
+});
+
+btnReset.addEventListener("click", () => {
+  selectProyectorMarca.value = "Marca";
+  filtroMarca = "Marca";
   
-let marcaProyectores = [];
-let codrecProyectores = [];
+  generateOptionsMarca();
+  
+  generateCatalogo();
 
-proyectoresStock.forEach((elemento) => {
-  marcaProyectores.push(elemento.marca);
-});
-marcaProyectores = [...new Set(marcaProyectores)];
-
-proyectoresStock.forEach((elemento) => {
-  codrecProyectores.push(elemento.cod_rec);
+  generateBTNaddID();
 });
 
-console.log(proyectoresStock);
-console.log(marcaProyectores);
-console.log(codrecProyectores);
-
-
-// Agrego BD al storage
+// Funciones al cargar pagina
 
 window.addEventListener("load", function () {
   pedirUsuarios();

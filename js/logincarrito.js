@@ -68,6 +68,30 @@ function funcionesAdmin(usuario) {
   }
 }
 
+// Mostrar alert permiso de reserva en carrito segun login
+
+function displayAlertPermisoReserva() {
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado");
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center";
+}
+
+function displayNoneAlertPermisoReserva() {
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado");
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center d-none";
+}
+
+// Habilitar boton reserva segun login
+
+function enablebtnReserva() {
+
+  let btnReservarCarrito = document.getElementById("btnReservarCarrito");
+  btnReservarCarrito.classList.remove("disabled");
+}
+
+function disablebtnReserva() {
+  let btnReservarCarrito = document.getElementById("btnReservarCarrito");
+  btnReservarCarrito.classList.add("disabled");
+}
 
 // Funciones al hacer login
 
@@ -78,6 +102,8 @@ function userlogin(usuario) {
     saludar(usuario);
     presentarInfo(toggles, "d-none");
     funcionesAdmin(usuario);
+    displayNoneAlertPermisoReserva();
+    enablebtnReserva();
   }
 }
 
@@ -117,19 +143,37 @@ btnLogout.addEventListener("click", () => {
   btnAdmin.className = "nav-item dropdown d-none";
   usuarioLogeado = false;
   sessionStorage.setItem("usuarioLogeado", usuarioLogeado);
+  displayAlertPermisoReserva();
+  disablebtnReserva();
 });
 
+// Mostrar/no alert log 
+
+function displayAlertLog(){
+  let alertUserLogeado = document.getElementById("alertUserNoRegistrado")
+  alertUserLogeado.classList = "col-9 alert alert-danger text-center";
+}
+
+function displaynoneAlertLog(){
+  let alertUserNoRegistrado = document.getElementById("alertUserNoRegistrado")
+  alertUserNoRegistrado.classList = "col-9 alert alert-danger text-center d-none";
+}
 
 userlogin(recuperarUsuario(sessionStorage));
 
 window.addEventListener("load", function () {
   let usuario = recuperarUsuario(sessionStorage);
   if (usuario != null) {
+    enablebtnReserva();
+    displaynoneAlertLog();
     let btnAdmin = document.getElementById("btnAdmin");
     if (usuario.tipo == "ADMINISTRADOR") {
       btnAdmin.className = "nav-item dropdown";
     } else {
       btnAdmin.className = "nav-item dropdown d-none";
     }
+  }else{
+    disablebtnReserva();
+    displayAlertLog();
   }
 });
