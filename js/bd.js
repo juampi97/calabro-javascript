@@ -108,4 +108,5 @@ btnReset.addEventListener("click", () => {
 window.addEventListener("load", function () {
   pedirUsuarios();
   pedirProyectores();
+  location.reload();
 });
