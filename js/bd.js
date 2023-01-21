@@ -48,6 +48,8 @@ const pedirProyectores = async () => {
   generateOptionsMarca()
 };
 
+pedirProyectores();
+
 //Simulo BD usuarios
 
 let usuarios = [];
@@ -65,6 +67,8 @@ const pedirUsuarios = async () => {
     localStorage.setItem("usuariosBD", JSON.stringify(usuarios));
   }
 };
+
+pedirUsuarios();
 
 // Generar opciones forms
 
