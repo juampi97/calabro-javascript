@@ -10,12 +10,32 @@ function today() {
   if (month < 10) {
     month = "0" + month;
   }
+  if (day < 10) {
+    day = "0" + day;
+  }
   hoy = `${year}-${month}-${day}`
   return hoy;
 }
 
+function addDays(date, days) {
+  var result = new Date();
+  result.setDate(result.getDate() + days);
+  let month = result.getMonth() + 1;
+  let day = result.getDate();
+  let year = result.getFullYear();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  hoy = `${year}-${month}-${day}`
+  return(hoy);
+}
+
 formDia.value = today();
 formDia.min = today();
+formDia.max = addDays(today(),5);
 
 btnReservarCarrito.addEventListener("click", () => {
   let usuario = recuperarUsuario(sessionStorage);
