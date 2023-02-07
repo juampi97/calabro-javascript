@@ -38,14 +38,19 @@ const pedirProyectores = async () => {
       prod.hdmi,
       prod.estado
     );
-    proyectores.push(newProyector);
-    marcaProyectores.push(newProyector.marca)
-    codrecProyectores.push(newProyector.cod_rec)
+
+    if (
+      !proyectores.some((element) => element.cod_rec == newProyector.cod_rec)
+    ) {
+      proyectores.push(newProyector);
+      marcaProyectores.push(newProyector.marca);
+      codrecProyectores.push(newProyector.cod_rec);
+    }
   });
 
   localStorage.setItem("proyectores", JSON.stringify(proyectores));
   marcaProyectores = [...new Set(marcaProyectores)];
-  generateOptionsMarca()
+  generateOptionsMarca();
 };
 
 pedirProyectores();
@@ -99,9 +104,9 @@ selectProyectorMarca.addEventListener("input", () => {
 btnReset.addEventListener("click", () => {
   selectProyectorMarca.value = "Marca";
   filtroMarca = "Marca";
-  
+
   generateOptionsMarca();
-  
+
   generateCatalogo();
 
   generateBTNaddID();
