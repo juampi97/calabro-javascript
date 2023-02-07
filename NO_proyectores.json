@@ -9,12 +9,12 @@
     "estado": "DISPONIBLE"
   },
   {
-    "cod_rec": "VIEW2",
-    "marca": "VIEWSONIC",
-    "modelo": "VS12472 (PJD6221)",
-    "sn": "R8K113406795",
+    "cod_rec": "BENQ3",
+    "marca": "BENQ",
+    "modelo": "MS619ST",
+    "sn": "PDK4E01092000",
     "vga": 1,
-    "hdmi": 0,
+    "hdmi": 1,
     "estado": "DISPONIBLE"
   },
   {
@@ -27,10 +27,19 @@
     "estado": "DISPONIBLE"
   },
   {
-    "cod_rec": "VIEW6",
+    "cod_rec": "VIEW10",
     "marca": "VIEWSONIC",
     "modelo": "PX701HD",
-    "sn": "VPS241701800",
+    "sn": "VPS241701779",
+    "vga": 1,
+    "hdmi": 1,
+    "estado": "Fun_D"
+  },
+  {
+    "cod_rec": "VIEW9",
+    "marca": "VIEWSONIC",
+    "modelo": "PX701HD",
+    "sn": "VPS241701771",
     "vga": 1,
     "hdmi": 1,
     "estado": "DISPONIBLE"
@@ -54,37 +63,28 @@
     "estado": "DISPONIBLE"
   },
   {
-    "cod_rec": "VIEW9",
+    "cod_rec": "VIEW6",
     "marca": "VIEWSONIC",
     "modelo": "PX701HD",
-    "sn": "VPS241701771",
+    "sn": "VPS241701800",
     "vga": 1,
     "hdmi": 1,
     "estado": "DISPONIBLE"
   },
   {
-    "cod_rec": "VIEW10",
+    "cod_rec": "VIEW2",
     "marca": "VIEWSONIC",
-    "modelo": "PX701HD",
-    "sn": "VPS241701779",
+    "modelo": "VS12472 (PJD6221)",
+    "sn": "R8K113406795",
     "vga": 1,
-    "hdmi": 1,
-    "estado": "Fun_D"
+    "hdmi": 0,
+    "estado": "DISPONIBLE"
   },
   {
     "cod_rec": "BENQ2",
     "marca": "BENQ",
     "modelo": "MX631ST",
     "sn": "PDE7G02941000",
-    "vga": 1,
-    "hdmi": 1,
-    "estado": "DISPONIBLE"
-  },
-  {
-    "cod_rec": "BENQ3",
-    "marca": "BENQ",
-    "modelo": "MS619ST",
-    "sn": "PDK4E01092000",
     "vga": 1,
     "hdmi": 1,
     "estado": "DISPONIBLE"
