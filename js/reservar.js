@@ -1,6 +1,17 @@
 formDia = document.getElementById("selectDateReserva");
 formHorario = document.getElementById("selectHorarioReserva");
 
+formDia.addEventListener("input", function () {
+  var date = new Date(this.value);
+  if (date.getDay() == 6 || date.getDay() == 0) {
+    Swal.fire(
+      "",
+      "No se toman reservas los dias Domingo",
+      "warning"
+    );
+  }
+});
+
 function today() {
   let date = new Date();
 
@@ -13,7 +24,7 @@ function today() {
   if (day < 10) {
     day = "0" + day;
   }
-  hoy = `${year}-${month}-${day}`
+  hoy = `${year}-${month}-${day}`;
   return hoy;
 }
 
@@ -29,13 +40,13 @@ function addDays(date, days) {
   if (day < 10) {
     day = "0" + day;
   }
-  hoy = `${year}-${month}-${day}`
-  return(hoy);
+  hoy = `${year}-${month}-${day}`;
+  return hoy;
 }
 
 formDia.value = today();
 formDia.min = today();
-formDia.max = addDays(today(),5);
+formDia.max = addDays(today(), 5);
 
 btnReservarCarrito.addEventListener("click", () => {
   let usuario = recuperarUsuario(sessionStorage);
